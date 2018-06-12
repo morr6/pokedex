@@ -17,22 +17,22 @@ export class MainContainer extends Component {
     }
 
     componentDidMount() { 
-        fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${this.state.initialPokemonsNumber}`)
-          .then(res => res.json())
-          .then(
-            (result) => {
-              this.setState({
-                isApiLoaded: true,
-                pokemons: result.results    
-              }); 
-            },
-            (error) => {
-              this.setState({
-                isApiLoaded: true,
-                error
-              }); 
-            }
-          )  
+      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${this.state.initialPokemonsNumber}`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              isApiLoaded: true,
+              pokemons: result.results    
+            }); 
+          },
+          (error) => {
+            this.setState({
+              isApiLoaded: true,
+              error
+            }); 
+          }
+        )  
     }
  
     LoadMorePokemons() {
@@ -54,6 +54,8 @@ export class MainContainer extends Component {
             }
           )  
     }
+
+    
 
     render() { 
         const { error, isApiLoaded, isPokemonsLoaded } = this.state;

@@ -2,10 +2,7 @@ import glamorous from 'glamorous';
 
 export const MenuBox = glamorous.div(props => {
     return {
-        top:0,
-        zIndex:9999,
-        position:'fixed',
-        height: '70px',
+        height: '7.5vh',
         width: '100%',
         background:'linear-gradient(#9a0000,#850000)' 
     }

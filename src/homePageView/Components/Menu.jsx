@@ -9,7 +9,7 @@ import { MenuBox,
         SearchInput,
         SearchWrapper} from '../ComponentsStyles/Menu.s';
 import SearchIcon from '../../../node_modules/react-material-icons/icons/action/search';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const searchStyle = {
     height:'20px',
@@ -55,9 +55,9 @@ export class Menu extends Component {
     }
 
     searchSubmit(event) {
-        event.preventDefault(event);
+        event.preventDefault();
         const path = `/${ this.state.searchValue }`
-        this.props.history.push('/'+path);
+        this.history.push(path)
     }
       
 
@@ -74,7 +74,7 @@ export class Menu extends Component {
                 </ButtonsBox>
 
                 {   this.state.changeMenuStyle === true &&
-                  <form onSubmit={ (event) => this.searchSubmit(event) } >
+                  <form>
                     <SearchWrapper hidden={ this.state.searchHidden  }>
                         <SearchIcon style={ searchStyle } />
                         <SearchInput onChange={ (event) => this.setState({ 
