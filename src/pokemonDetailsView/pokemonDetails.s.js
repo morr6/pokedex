@@ -7,18 +7,20 @@ export const MainBox = glamorous.div(props => {
         background:'white',
     }
 })
-export const PokemonWrapper = glamorous.div(props => {
-    return {
-        width:'400px', height:'400px',
-        margin: '0 0 0 10%',
-        float:'left'
-    }
-})
+
 export const NameWrapper = glamorous.div(props => {
     return {
         fontSize: '30px',
         fontFamily: '"Courier New", Courier',
         textAlign: 'center',
+    }
+})
+
+export const PokemonImageWrapper = glamorous.div(props => {
+    return {
+        width:'400px', height:'400px',
+        margin: '0 0 0 10%',
+        float:'left'
     }
 })
 
@@ -30,6 +32,23 @@ export const TypesWrapper = glamorous.div(props => {
         height:'60px',
     }
 })
+
+export const CenterBox = glamorous.div(props => {
+    return {
+        float:'left',
+        margin:'0 0 0 12.5%'
+    }
+})
+
+export const AbilitiesWrapper = glamorous.div(props => {
+    return {
+        fontSize:'25px',
+        margin:'100px 0 0 0',
+        width:'200px',
+        textAlign:'center',
+    }
+})
+
 export const PokemonId = glamorous.div(props => {
     return {
         color:'grey',
@@ -37,13 +56,15 @@ export const PokemonId = glamorous.div(props => {
         fontSize: '20px',
     }
 })
+
 export const StatsWrapper = glamorous.div(props => {
     return {
         float:'left',
-        margin:'2% 0 0 8%',
+        margin:'2% 0 0 15%',
         fontFamily: '"Courier New", Courier',
     }
 })
+
 export const PokemonStatName = glamorous.span(props => {
     return {
         fontSize:'20px',
@@ -53,18 +74,10 @@ export const PokemonStatName = glamorous.span(props => {
         margin:'0 150px 0 0'
     }
 })
+
 export const PokemonStatValue = glamorous.span(props => {
     return {
         fontSize:'20px',
         fontWeight:'bold',
-    }
-})
-export const AbilitiesWrapper = glamorous.div(props => {
-    return {
-        float:'left',
-        height:'50px',
-        width:'200px',
-        margin:'5% 0 0 10%',
-        textAlign:'center'
     }
 })

@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import { Menu } from '../pokemonDetailsView/Components/Menu';
-import { MainBox, 
-        PokemonWrapper, 
+import { MainBox,  
         NameWrapper, 
-        TypesWrapper,
         PokemonId,
+        PokemonImageWrapper,
+        TypesWrapper,
+        AbilitiesWrapper,
+        CenterBox,
         StatsWrapper,
         PokemonStatName,
-        PokemonStatValue, 
-        AbilitiesWrapper} from './pokemonDetails.s';
+        PokemonStatValue,  } from './pokemonDetails.s';
 import { PokemonNotFound } from './Components/PokemonNotFound'
 
 const typeIconStyle = {
@@ -20,6 +21,10 @@ const typeIconStyle = {
 const statsBoxStyle = { 
     marginBottom:'50px',
     width:'100%',
+}
+const pokemonImageStyle = { 
+    height:'100%',
+    width:'100%' 
 }
 
 export class pokemonDetailsView extends Component {
@@ -52,7 +57,7 @@ export class pokemonDetailsView extends Component {
           }
         ) 
     }
- 
+
     render() {
         console.log(this.state.pokemonDetails)
         const { pokemonDetails, pokemonLoaded, error } = this.state;
@@ -74,12 +79,14 @@ export class pokemonDetailsView extends Component {
                             <PokemonId> #{ pokemonDetails.id } </PokemonId>
                             </NameWrapper>
                             
-                            <PokemonWrapper>
+                            <PokemonImageWrapper>
                                 <img src={`https://img.pokemondb.net/artwork/${pokemonDetails.name}.jpg`} 
-                                    alt='pokemonImage' style={{ height:'100%',width:'100%' }}/>
-                            
+                                    alt='pokemonImage' style={ pokemonImageStyle }/>
+                            </PokemonImageWrapper>
+
+                            <CenterBox>
                                 <TypesWrapper>  
-                                    <span style={{ float:'left', padding: '10px 20px 0 100px' }}> Type </span>
+                                    <span style={{ float:'left', margin:'10px 20px 0 0'}}> Type </span>
                                     {  
                                         pokemonDetails.types.map( (type,key) => 
                                             <img title={`${type.type.name}`} key={key} 
@@ -90,7 +97,18 @@ export class pokemonDetailsView extends Component {
                                     }
                                 </TypesWrapper>  
 
-                            </PokemonWrapper>
+                                <AbilitiesWrapper>   
+                                    <h1> Abilities </h1>
+                                    {
+                                        pokemonDetails.abilities.map( (ability,key) =>
+                                            <div key={key}>
+                                                { ability.ability.name }
+                                            </div>
+                                        )
+                                    }
+                                </AbilitiesWrapper> 
+                            </CenterBox>
+
                             <StatsWrapper>
                                 { 
                                     pokemonDetails.stats.map( (stat,key) =>
@@ -100,18 +118,7 @@ export class pokemonDetailsView extends Component {
                                         </div>
                                     )
                                 }
-                            </StatsWrapper>  
-
-                            <AbilitiesWrapper>   
-                                <h1> Abilities </h1>
-                                {
-                                    pokemonDetails.abilities.map( (ability,key) =>
-                                        <div key={key}>
-                                            { ability.ability.name }
-                                        </div>
-                                    )
-                                }
-                            </AbilitiesWrapper> 
+                            </StatsWrapper> 
 
                         </div>
                     }        

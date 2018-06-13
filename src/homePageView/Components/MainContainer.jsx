@@ -1,6 +1,10 @@
 import React from 'react';
 import {Component} from 'react';
-import { MainBox, PokemonsContainer, LoadMorePokemons, SortingButton,SortingButtonsBox } from '../ComponentsStyles/MainContainer.s'
+import { MainBox, 
+    PokemonsContainer, 
+    LoadMorePokemons, 
+    SortingButton,
+    SortingButtonsBox } from '../ComponentsStyles/MainContainer.s'
 import { PokemonBox } from './PokemonBox.jsx'
 import { Link } from 'react-router-dom'
 import { FetchErrorMassage } from '../Components/FetchErrorMessage'
@@ -14,6 +18,8 @@ export class MainContainer extends Component {
             isApiLoaded: false,
             pokemons: [],
             initialPokemonsNumber: 24,
+            findInputValue: '',
+            pyk: []
         }
     }
 
@@ -46,6 +52,16 @@ export class MainContainer extends Component {
     SortFromZ() {
       this.setState({ pokemon: this.state.pokemons.sort().reverse() })
     }
+
+    pyk(event) {
+      this.setState({ findInputValue: event.target.value })
+
+      this.setState({ pokemons:
+        this.state.pokemons.filter( pokemon => 
+          pokemon.slice(0,this.state.findInputValue.length) === this.state.findInputValue )
+      })
+
+    }
         
 
     render() { 
@@ -54,7 +70,8 @@ export class MainContainer extends Component {
         return (
         <MainBox>
             <PokemonsContainer>
-
+              
+            <input onChange={ (event) => this.pyk(event) } style={{ float:'left' }}/>
                 { isApiLoaded && !error ? 
                     <SortingButtonsBox>
                       <SortingButton onClick={ () => this.SortFromA() }> Sort from A to Z </SortingButton>
