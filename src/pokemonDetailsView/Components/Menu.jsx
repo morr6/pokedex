@@ -25,7 +25,13 @@ export class Menu extends Component {
         super(props);
 
         this.state = {
+            searchValue: null
         }
+    }
+
+    searchSubmit(event) {
+        event.preventDefault(event);
+        window.location.pathname = `/${ this.state.searchValue.toLowerCase() }`
     }
    
     render() {
@@ -40,10 +46,16 @@ export class Menu extends Component {
                 </ButtonsBox>
 
             
-                <SearchWrapper>
-                    <SearchIcon style={ searchStyle } />
-                    <SearchInput placeholder='Search for pokemon...' />
-                </SearchWrapper>
+            
+                <form onSubmit={ (event) => this.searchSubmit(event) } > 
+                    <SearchWrapper hidden={ this.state.searchHidden  }>
+                        <SearchIcon style={ searchStyle } />
+                        <SearchInput onChange={ (event) => this.setState({ 
+                            searchValue: event.target.value }) }
+                            placeholder='Search for pokemon...' />
+                    </SearchWrapper>
+                </form>
+              
                
 
             </MenuBox>

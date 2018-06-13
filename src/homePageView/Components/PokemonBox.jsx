@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {NameWrapper, 
         PokemonImage, 
-        IdWrapper,
         PokemonWrapper } from '../ComponentsStyles/PokemonBox.s';     
 
 

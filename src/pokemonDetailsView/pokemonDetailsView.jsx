@@ -7,7 +7,9 @@ import { MainBox,
         PokemonId,
         StatsWrapper,
         PokemonStatName,
-        PokemonStatValue } from './pokemonDetails.s';
+        PokemonStatValue, 
+        AbilitiesWrapper} from './pokemonDetails.s';
+import { PokemonNotFound } from './Components/PokemonNotFound'
 
 const typeIconStyle = {
     height: '60px', width: '60px',
@@ -33,7 +35,7 @@ export class pokemonDetailsView extends Component {
     }
 
 
-    componentDidMount() {
+    componentWillMount() {
         fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.match.params.pokemonName}`)
         .then(res => res.json())
         .then(
@@ -44,7 +46,9 @@ export class pokemonDetailsView extends Component {
             })
         },
         (error) => {
-          this.setState({ error: error, pokemonLoaded: true })
+          this.setState({ 
+              error: error, 
+              pokemonLoaded: true })
           }
         ) 
     }
@@ -56,55 +60,66 @@ export class pokemonDetailsView extends Component {
             <div>
                 <Menu />          
                 <MainBox> 
-                    
-                { 
-                    error ? <div> Error: { error.message } </div> : 
-                    !pokemonLoaded ? <div> Loading... </div> :
-                    <div> 
-                        
-                        <NameWrapper>
-                          <h1> 
-                            { pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1).toLowerCase() } 
-                          </h1>
-                          <PokemonId> #{ pokemonDetails.id } </PokemonId>
-                        </NameWrapper>
-                        
-                        <PokemonWrapper>
-                            <img src={`https://img.pokemondb.net/artwork/${pokemonDetails.name}.jpg`} 
-                                alt='pokemonImage' style={{ height:'100%',width:'100%' }}/>
-                        
-                            <TypesWrapper>  
-                                <div style={{ float:'left',padding: '10px 20px 0 100px' }}> Type </div>
-                                {  
-                                    pokemonDetails.types.map( (type,key) => 
-                                        <img title={`${type.type.name}`} key={key} 
-                                            src={ require(`../img/typesIcons/${type.type.name}.png`) }
-                                            style={ typeIconStyle } 
-                                        /> 
+
+                    { 
+                        error ? <div> Error: { error.message } </div> : 
+                        !pokemonLoaded ? <div> Loading... </div> :
+                        !pokemonDetails.name ? <PokemonNotFound name={ this.props.match.params.pokemonName } /> : 
+                        <div> 
+                            
+                            <NameWrapper>
+                            <h1> 
+                                { pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1).toLowerCase() } 
+                            </h1>
+                            <PokemonId> #{ pokemonDetails.id } </PokemonId>
+                            </NameWrapper>
+                            
+                            <PokemonWrapper>
+                                <img src={`https://img.pokemondb.net/artwork/${pokemonDetails.name}.jpg`} 
+                                    alt='pokemonImage' style={{ height:'100%',width:'100%' }}/>
+                            
+                                <TypesWrapper>  
+                                    <span style={{ float:'left', padding: '10px 20px 0 100px' }}> Type </span>
+                                    {  
+                                        pokemonDetails.types.map( (type,key) => 
+                                            <img title={`${type.type.name}`} key={key} 
+                                                src={ require(`../img/typesIcons/${type.type.name}.png`) }
+                                                style={ typeIconStyle } 
+                                            /> 
+                                        )
+                                    }
+                                </TypesWrapper>  
+
+                            </PokemonWrapper>
+                            <StatsWrapper>
+                                { 
+                                    pokemonDetails.stats.map( (stat,key) =>
+                                        <div key={key} style={ statsBoxStyle }> 
+                                            <PokemonStatName> { stat.stat.name }: </PokemonStatName>
+                                            <PokemonStatValue> { stat.base_stat } </PokemonStatValue>
+                                        </div>
                                     )
                                 }
-                            </TypesWrapper>  
+                            </StatsWrapper>  
 
-                        </PokemonWrapper>
-                        <StatsWrapper>
-                            { 
-                                pokemonDetails.stats.map( (stat,key) =>
-                                    <div key={key} style={ statsBoxStyle } > 
-                                        <PokemonStatName> { stat.stat.name }: </PokemonStatName>
-                                        <PokemonStatValue> { stat.base_stat } </PokemonStatValue>
-                                    </div>
-                                )
-                            }
-                        </StatsWrapper>      
+                            <AbilitiesWrapper>   
+                                <h1> Abilities </h1>
+                                {
+                                    pokemonDetails.abilities.map( (ability,key) =>
+                                        <div key={key}>
+                                            { ability.ability.name }
+                                        </div>
+                                    )
+                                }
+                            </AbilitiesWrapper> 
 
-                    </div>
-                }
-                
+                        </div>
+                    }        
+
                 </MainBox>  
 
-                 
+                
             </div>
         )
-    }
-    
+    }    
 }

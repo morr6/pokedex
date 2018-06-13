@@ -13,7 +13,7 @@ export const MainBox = glamorous.div(props => {
 export const PokemonsContainer = glamorous.div(props => {
     return {
         position:'relative',
-        top:'200px',left:'10%',bottom:'200px',
+        top:'150px',left:'10%',bottom:'200px',
         width:'90%',
     }
 })
@@ -33,6 +33,35 @@ export const LoadMorePokemons = glamorous.button(props => {
         ':hover': {
             color:'white',
             background:'red'
+        }
+    }
+})
+export const SortingButtonsBox = glamorous.div(props => {
+    return {
+        position:'absolute',
+        left: '60%',
+        top: '-100'
+    }
+})
+export const SortingButton = glamorous.button(props => {
+    return {
+        fontFamily: '"Comic Sans MS", cursive, sans-serif',
+        fontSize:'20px',
+        borderRadius:'50px',
+        background:'white',
+        color:'red',
+        border:'1px solid red',
+        height:'50px',
+        width:'250px',
+        float:'left',
+        margin:'0 50px 0 0',
+        transition:'.6s',
+        cursor:'pointer',
+        outline:'none',
+
+        ':hover': {
+            background: 'red',
+            color:'white'
         }
     }
 })

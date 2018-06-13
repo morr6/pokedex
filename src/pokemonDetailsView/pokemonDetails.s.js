@@ -9,7 +9,7 @@ export const MainBox = glamorous.div(props => {
 })
 export const PokemonWrapper = glamorous.div(props => {
     return {
-        width:'450px',
+        width:'400px', height:'400px',
         margin: '0 0 0 10%',
         float:'left'
     }
@@ -39,12 +39,12 @@ export const PokemonId = glamorous.div(props => {
 })
 export const StatsWrapper = glamorous.div(props => {
     return {
-        width:'21%',
-        margin:'2% 0 0 40%',
+        float:'left',
+        margin:'2% 0 0 8%',
         fontFamily: '"Courier New", Courier',
     }
 })
-export const PokemonStatName = glamorous.div(props => {
+export const PokemonStatName = glamorous.span(props => {
     return {
         fontSize:'20px',
         fontWeight:'bold',
@@ -53,9 +53,18 @@ export const PokemonStatName = glamorous.div(props => {
         margin:'0 150px 0 0'
     }
 })
-export const PokemonStatValue = glamorous.div(props => {
+export const PokemonStatValue = glamorous.span(props => {
     return {
         fontSize:'20px',
         fontWeight:'bold',
+    }
+})
+export const AbilitiesWrapper = glamorous.div(props => {
+    return {
+        float:'left',
+        height:'50px',
+        width:'200px',
+        margin:'5% 0 0 10%',
+        textAlign:'center'
     }
 })

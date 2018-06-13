@@ -55,9 +55,8 @@ export class Menu extends Component {
     }
 
     searchSubmit(event) {
-        event.preventDefault();
-        const path = `/${ this.state.searchValue }`
-        this.history.push(path)
+        event.preventDefault(event);
+        window.location.pathname = `/${ this.state.searchValue.toLowerCase() }`
     }
       
 
@@ -68,13 +67,13 @@ export class Menu extends Component {
                 <LogoWrapper> <Logo src={logo} alt='logo' /> </LogoWrapper>
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
                     <Link to={'/'} ><MenuButton> Home </MenuButton> </Link>
-                    <MenuButton> Filters </MenuButton>
+                    <MenuButton> Sort </MenuButton>
                     <MenuButton> Coś </MenuButton>
-                    <MenuButton> Coś innego </MenuButton>
+                    <MenuButton> Contact </MenuButton>
                 </ButtonsBox>
 
-                {   this.state.changeMenuStyle === true &&
-                  <form>
+                { this.state.changeMenuStyle === true &&
+                  <form onSubmit={ (event) => this.searchSubmit(event) } > 
                     <SearchWrapper hidden={ this.state.searchHidden  }>
                         <SearchIcon style={ searchStyle } />
                         <SearchInput onChange={ (event) => this.setState({ 

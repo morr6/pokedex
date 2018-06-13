@@ -10,8 +10,8 @@ export class homePageView extends Component {
     render() {
       return (
         <div>
-          <Menu/>
-          <MainContainer/> 
+          <Menu />
+          <MainContainer /> 
           <Footer />           
         </div>
       );

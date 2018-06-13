@@ -1,8 +1,9 @@
 import React from 'react';
 import {Component} from 'react';
-import { MainBox, PokemonsContainer, LoadMorePokemons } from '../ComponentsStyles/MainContainer.s'
+import { MainBox, PokemonsContainer, LoadMorePokemons, SortingButton,SortingButtonsBox } from '../ComponentsStyles/MainContainer.s'
 import { PokemonBox } from './PokemonBox.jsx'
 import { Link } from 'react-router-dom'
+import { FetchErrorMassage } from '../Components/FetchErrorMessage'
 
 export class MainContainer extends Component {
     constructor(props) {
@@ -12,18 +13,18 @@ export class MainContainer extends Component {
             error: null,
             isApiLoaded: false,
             pokemons: [],
-            initialPokemonsNumber: 24
+            initialPokemonsNumber: 24,
         }
     }
 
     componentDidMount() { 
-      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${this.state.initialPokemonsNumber}`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=806`)
         .then(res => res.json())
         .then(
           (result) => {
             this.setState({
               isApiLoaded: true,
-              pokemons: result.results    
+              pokemons: result.results.map( pokemon => pokemon.name )
             }); 
           },
           (error) => {
@@ -36,45 +37,46 @@ export class MainContainer extends Component {
     }
  
     LoadMorePokemons() {
-        this.setState({ initialPokemonsNumber: this.state.initialPokemonsNumber += 24 })
-        fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${this.state.initialPokemonsNumber}`)
-          .then(res => res.json())
-          .then(
-            (result) => {
-              this.setState({
-                isApiLoaded: true,
-                pokemons: result.results    
-              }); 
-            },
-            (error) => {
-              this.setState({
-                isApiLoaded: true,
-                error
-              }); 
-            }
-          )  
+      this.setState({ initialPokemonsNumber: this.state.initialPokemonsNumber += 24 })
     }
-
     
+    SortFromA() {
+      this.setState({ pokemon: this.state.pokemons.sort() })
+    }
+    SortFromZ() {
+      this.setState({ pokemon: this.state.pokemons.sort().reverse() })
+    }
+        
 
     render() { 
-        const { error, isApiLoaded, isPokemonsLoaded } = this.state;
+      console.log(this.state.pokemons)
+        const { error, isApiLoaded } = this.state;
         return (
         <MainBox>
             <PokemonsContainer>
 
-                { 
-                    error ? <div> Error: { error.message } </div> : 
-                    !isApiLoaded ? <div> Loading... </div> :
-                    this.state.pokemons.map( (pokemon,key) => 
-                        <Link key={key} style={{color:'black'}} to={`/${pokemon.name}`}> 
-                            <PokemonBox key={key} name={ pokemon.name } /> 
-                        </Link>
-                    )   
+                { isApiLoaded && !error ? 
+                    <SortingButtonsBox>
+                      <SortingButton onClick={ () => this.SortFromA() }> Sort from A to Z </SortingButton>
+                      <SortingButton onClick={ () => this.SortFromZ() }> Sort from Z to A </SortingButton>
+                    </SortingButtonsBox> : null
                 }
-                <LoadMorePokemons onClick={ () => this.LoadMorePokemons() } >
-                    Load more pokemons 
-                </LoadMorePokemons>
+                { 
+                    error ? <FetchErrorMassage /> : 
+                    !isApiLoaded ? <div> Loading... </div> :
+                    this.state.pokemons
+                      .slice(0, this.state.initialPokemonsNumber)
+                      .map( (pokemon,key) => 
+                          <Link key={key} style={{color:'black'}} to={`/${pokemon}`}> 
+                              <PokemonBox key={key} name={ pokemon } /> 
+                          </Link>
+                      )   
+                }
+                { isApiLoaded && !error ? 
+                    <LoadMorePokemons onClick={ () => this.LoadMorePokemons() } >
+                        Load more pokemons 
+                    </LoadMorePokemons> : null
+                }
             </PokemonsContainer>
         </MainBox>
         )
