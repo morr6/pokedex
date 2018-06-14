@@ -1,101 +1,82 @@
 import React from 'react';
 import {Component} from 'react';
-import { MainBox, 
-    PokemonsContainer, 
-    LoadMorePokemons, 
-    SortingButton,
-    SortingButtonsBox } from '../ComponentsStyles/MainContainer.s'
+import { MainBox,
+    PokemonsContainer,
+    LoadMorePokemons, } from '../ComponentsStyles/MainContainer.s'
 import { PokemonBox } from './PokemonBox.jsx'
 import { Link } from 'react-router-dom'
-import { FetchErrorMassage } from '../Components/FetchErrorMessage'
+import { FetchErrorMassage } from '../Components/FetchErrorMessage';
+import { connect } from 'react-redux'
+import { setPokemonList, isApiLoaded } from "../../actions/pokemonActionsList";
 
-export class MainContainer extends Component {
+class PokemonContainer extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             error: null,
-            isApiLoaded: false,
-            pokemons: [],
             initialPokemonsNumber: 24,
-            findInputValue: '',
-            pyk: []
         }
     }
 
     componentDidMount() { 
-      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=806`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.state.initialPokemonsNumber }`)
         .then(res => res.json())
         .then(
           (result) => {
-            this.setState({
-              isApiLoaded: true,
-              pokemons: result.results.map( pokemon => pokemon.name )
-            }); 
+            this.props.setPokemonList(result.results.map( pokemon => pokemon.name ))
+            this.props.isApiLoaded()
           },
           (error) => {
-            this.setState({
-              isApiLoaded: true,
-              error
-            }); 
+            this.props.isApiLoaded()
+            this.setState({ error })
           }
         )  
-    }
- 
+    }        
+
     LoadMorePokemons() {
-      this.setState({ initialPokemonsNumber: this.state.initialPokemonsNumber += 24 })
+        this.setState({ initialPokemonsNumber: this.state.initialPokemonsNumber + 24 })
     }
     
-    SortFromA() {
-      this.setState({ pokemon: this.state.pokemons.sort() })
-    }
-    SortFromZ() {
-      this.setState({ pokemon: this.state.pokemons.sort().reverse() })
-    }
-
-    pyk(event) {
-      this.setState({ findInputValue: event.target.value })
-
-      this.setState({ pokemons:
-        this.state.pokemons.filter( pokemon => 
-          pokemon.slice(0,this.state.findInputValue.length) === this.state.findInputValue )
-      })
-
-    }
-        
-
-    render() { 
-      console.log(this.state.pokemons)
-        const { error, isApiLoaded } = this.state;
+    render() {
+      console.log(this.props.apiLoaded)
+        const { error } = this.state;
         return (
         <MainBox>
             <PokemonsContainer>
-              
-            <input onChange={ (event) => this.pyk(event) } style={{ float:'left' }}/>
-                { isApiLoaded && !error ? 
-                    <SortingButtonsBox>
-                      <SortingButton onClick={ () => this.SortFromA() }> Sort from A to Z </SortingButton>
-                      <SortingButton onClick={ () => this.SortFromZ() }> Sort from Z to A </SortingButton>
-                    </SortingButtonsBox> : null
-                }
+
                 { 
                     error ? <FetchErrorMassage /> : 
-                    !isApiLoaded ? <div> Loading... </div> :
-                    this.state.pokemons
-                      .slice(0, this.state.initialPokemonsNumber)
-                      .map( (pokemon,key) => 
+                    !this.props.apiLoaded ? <div> Loading... </div> :
+                    this.props.pokemonList.map( (pokemon,key) =>
                           <Link key={key} style={{color:'black'}} to={`/${pokemon}`}> 
                               <PokemonBox key={key} name={ pokemon } /> 
                           </Link>
                       )   
                 }
-                { isApiLoaded && !error ? 
-                    <LoadMorePokemons onClick={ () => this.LoadMorePokemons() } >
+                { this.props.apiLoaded && !error ? 
+                    <LoadMorePokemons onClick={ () => this.LoadMorePokemons() }>
                         Load more pokemons 
                     </LoadMorePokemons> : null
                 }
+
             </PokemonsContainer>
         </MainBox>
         )
-    }  
+    }
 }
+
+const mapStateToProps = state => ({
+  pokemonList: state.pokemonList,
+  apiLoaded: state.apiLoaded,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setPokemonList: pokemonList => dispatch(setPokemonList(pokemonList)),
+  isApiLoaded: loaded => dispatch(isApiLoaded(loaded))
+});
+
+export const VisiblePokemonContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PokemonContainer)

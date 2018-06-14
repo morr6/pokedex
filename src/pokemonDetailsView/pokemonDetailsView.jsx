@@ -9,25 +9,14 @@ import { MainBox,
         CenterBox,
         StatsWrapper,
         PokemonStatName,
-        PokemonStatValue,  } from './pokemonDetails.s';
-import { PokemonNotFound } from './Components/PokemonNotFound'
+        PokemonStatValue,
+        StatsBox,
+        TypeIcon  } from './pokemonDetails.s';
+import { PokemonNotFound } from './Components/PokemonNotFound';
+import { setPokemonDetails } from '../actions/pokemonActionsList'
+import { connect } from 'react-redux'
 
-const typeIconStyle = {
-    height: '60px', width: '60px',
-    float: 'left',
-    cursor: 'pointer'
-}
-
-const statsBoxStyle = { 
-    marginBottom:'50px',
-    width:'100%',
-}
-const pokemonImageStyle = { 
-    height:'100%',
-    width:'100%' 
-}
-
-export class pokemonDetailsView extends Component {
+class pokemonDetailsView extends Component {
     constructor(props) {
         super(props);
 
@@ -35,7 +24,6 @@ export class pokemonDetailsView extends Component {
             pokemonDetails: [],
             pokemonLoaded: false,
             error: null,
-            statHovered: false
         }
     }
 
@@ -45,8 +33,8 @@ export class pokemonDetailsView extends Component {
         .then(res => res.json())
         .then(
           (result) => {
+            this.props.setPokemonDetails(result)
             this.setState({
-                pokemonDetails: result,
                 pokemonLoaded: true
             })
         },
@@ -59,8 +47,8 @@ export class pokemonDetailsView extends Component {
     }
 
     render() {
-        console.log(this.state.pokemonDetails)
-        const { pokemonDetails, pokemonLoaded, error } = this.state;
+        console.log(this.props.pokemonList)
+        const { pokemonLoaded, error } = this.state;
         return (
             <div>
                 <Menu />          
@@ -69,29 +57,29 @@ export class pokemonDetailsView extends Component {
                     { 
                         error ? <div> Error: { error.message } </div> : 
                         !pokemonLoaded ? <div> Loading... </div> :
-                        !pokemonDetails.name ? <PokemonNotFound name={ this.props.match.params.pokemonName } /> : 
+                        !this.props.pokemonDetails.name ? <PokemonNotFound name={ this.props.match.params.pokemonName } /> : 
                         <div> 
                             
                             <NameWrapper>
                             <h1> 
-                                { pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1).toLowerCase() } 
+                                { this.props.pokemonDetails.name.charAt(0).toUpperCase() + 
+                                    this.props.pokemonDetails.name.slice(1).toLowerCase() } 
                             </h1>
-                            <PokemonId> #{ pokemonDetails.id } </PokemonId>
+                            <PokemonId> #{ this.props.pokemonDetails.id } </PokemonId>
                             </NameWrapper>
                             
                             <PokemonImageWrapper>
-                                <img src={`https://img.pokemondb.net/artwork/${pokemonDetails.name}.jpg`} 
-                                    alt='pokemonImage' style={ pokemonImageStyle }/>
+                                <img src={`https://img.pokemondb.net/artwork/${this.props.pokemonDetails.name}.jpg`} 
+                                    alt='pokemonImage' style={{width:'100%',height:'100%'}}/>
                             </PokemonImageWrapper>
 
                             <CenterBox>
                                 <TypesWrapper>  
                                     <span style={{ float:'left', margin:'10px 20px 0 0'}}> Type </span>
                                     {  
-                                        pokemonDetails.types.map( (type,key) => 
-                                            <img title={`${type.type.name}`} key={key} 
+                                        this.props.pokemonDetails.types.map( (type,key) => 
+                                            <TypeIcon title={`${type.type.name}`} key={key} 
                                                 src={ require(`../img/typesIcons/${type.type.name}.png`) }
-                                                style={ typeIconStyle } 
                                             /> 
                                         )
                                     }
@@ -100,7 +88,7 @@ export class pokemonDetailsView extends Component {
                                 <AbilitiesWrapper>   
                                     <h1> Abilities </h1>
                                     {
-                                        pokemonDetails.abilities.map( (ability,key) =>
+                                        this.props.pokemonDetails.abilities.map( (ability,key) =>
                                             <div key={key}>
                                                 { ability.ability.name }
                                             </div>
@@ -111,11 +99,11 @@ export class pokemonDetailsView extends Component {
 
                             <StatsWrapper>
                                 { 
-                                    pokemonDetails.stats.map( (stat,key) =>
-                                        <div key={key} style={ statsBoxStyle }> 
+                                    this.props.pokemonDetails.stats.map( (stat,key) =>
+                                        <StatsBox key={key} > 
                                             <PokemonStatName> { stat.stat.name }: </PokemonStatName>
                                             <PokemonStatValue> { stat.base_stat } </PokemonStatValue>
-                                        </div>
+                                        </StatsBox>
                                     )
                                 }
                             </StatsWrapper> 
@@ -130,3 +118,14 @@ export class pokemonDetailsView extends Component {
         )
     }    
 }
+
+const mapStateToProps = state => ({
+    pokemonDetails: state.pokemonDetails,
+})
+const mapDispatchToProps = dispatch => ({
+  setPokemonDetails: pokemonDetails => dispatch(setPokemonDetails(pokemonDetails)),
+})
+export const VisiblepokemonDetails = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(pokemonDetailsView)

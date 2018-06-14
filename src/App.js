@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {MuiThemeProvider} from 'material-ui';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { homePageView } from './homePageView/homePageView.jsx';
-import { pokemonDetailsView } from './pokemonDetailsView/pokemonDetailsView.jsx'
+import { VisiblepokemonDetails } from './pokemonDetailsView/pokemonDetailsView.jsx'
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
             <div>
               <Route exact path="/" component={ homePageView } />
 
-              <Route exact path="/:pokemonName" component={ pokemonDetailsView } />
+              <Route exact path="/:pokemonName" component={ VisiblepokemonDetails } />
             </div>
           </BrowserRouter>
         </MuiThemeProvider>

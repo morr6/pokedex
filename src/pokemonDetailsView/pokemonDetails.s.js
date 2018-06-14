@@ -36,7 +36,7 @@ export const TypesWrapper = glamorous.div(props => {
 export const CenterBox = glamorous.div(props => {
     return {
         float:'left',
-        margin:'0 0 0 12.5%'
+        margin:'0 0 0 14%'
     }
 })
 
@@ -79,5 +79,19 @@ export const PokemonStatValue = glamorous.span(props => {
     return {
         fontSize:'20px',
         fontWeight:'bold',
+    }
+})
+
+export const StatsBox = glamorous.div(props => {
+    return {
+        marginBottom: '50px',
+        width:'100%'
+    }
+})
+export const TypeIcon = glamorous.img(props => {
+    return {
+        height: '60px', width: '60px',
+        float: 'left',
+        cursor: 'pointer'
     }
 })
