@@ -19,30 +19,17 @@ class PokemonContainer extends Component {
         }
     }
 
-    componentDidMount() { 
-      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.props.loadingSpecs.limit }&offset=${ this.props.loadingSpecs.offset }`)
-        .then(res => res.json())
-        .then(
-          (result) => {console.log(result)
-            this.props.setPokemonList(result.results.map( pokemon => pokemon.name ))
-            this.props.isApiLoaded()
-            this.props.loadMorePokemons()
-          },
-          (error) => {
-            this.props.isApiLoaded()
-            this.setState({ error })
-          }
-        )  
-    }        
-
-    LoadMorePokemons() {
-        this.props.loadMorePokemons()
-
+    fetchApi() {
         fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.props.loadingSpecs.limit }&offset=${ this.props.loadingSpecs.offset }`)
         .then(res => res.json())
         .then(
           (result) => {console.log(result)
             this.props.setPokemonList(result.results.map( pokemon => pokemon.name ))
+
+            if (!this.props.loadingSpecs.offset) {
+                this.props.loadMorePokemons()
+            }
+
             this.props.isApiLoaded()
           },
           (error) => {
@@ -50,6 +37,17 @@ class PokemonContainer extends Component {
             this.setState({ error })
           }
         )  
+    }
+
+    componentWillMount() { 
+        if (!this.props.pokemonList.length) { 
+            this.fetchApi()
+        }
+    }        
+
+    LoadMorePokemons() {
+        this.props.loadMorePokemons()
+        this.fetchApi();
     }
     
     render() {

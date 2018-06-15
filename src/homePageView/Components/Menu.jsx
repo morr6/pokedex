@@ -57,7 +57,7 @@ export class Menu extends Component {
       
     scrollToContact() {
         scroll.scrollToBottom({
-            duration: 2000,
+            duration: 1500,
         });
     }
     scrollToTop() {
@@ -75,7 +75,7 @@ export class Menu extends Component {
                 </LogoWrapper>
 
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
-                    <Link to={'/'} ><MenuButton> Home </MenuButton> </Link>
+                    <Link to={'/'} ><MenuButton> Pokemons list </MenuButton> </Link>
                     <MenuButton> Sort </MenuButton>
                     <MenuButton> Coś </MenuButton>
                     <MenuButton onClick={ () => this.scrollToContact() }> Contact </MenuButton>

@@ -40,7 +40,7 @@ export class Menu extends Component {
             <MenuBox>
                 <LogoWrapper> <Logo src={logo} alt='logo' /> </LogoWrapper>
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
-                    <Link to={'/'} ><MenuButton> Home </MenuButton> </Link>
+                    <Link to={'/'} ><MenuButton> Pokemons list </MenuButton> </Link>
                     <MenuButton> Filters </MenuButton>
                     <MenuButton> Coś </MenuButton>
                     <MenuButton> Contact </MenuButton>

@@ -14,7 +14,8 @@ export const MenuBox = glamorous.div(props => {
 export const LogoWrapper = glamorous.div(props => {
     return {
         margin:'7.5px 0 0 10%',
-        float:'left'
+        float:'left',
+        cursor: 'pointer'
     }
 })
 

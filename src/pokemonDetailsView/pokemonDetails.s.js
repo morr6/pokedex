@@ -42,6 +42,7 @@ export const CenterBox = glamorous.div(props => {
 
 export const AbilitiesWrapper = glamorous.div(props => {
     return {
+        fontFamily: '"Comic Sans MS", cursive, sans-serif',
         fontSize:'25px',
         margin:'100px 0 0 0',
         width:'200px',

@@ -40,7 +40,6 @@ class pokemonDetailsView extends Component {
             this.props.areDetailsLoading()
         },
         (error) => {
-          this.props.areDetailsLoaded()
           this.setState({ error })
           }
         ) 
@@ -48,7 +47,6 @@ class pokemonDetailsView extends Component {
 
 
     render() {
-        console.log(this.props.detailsLoading)
         const { error } = this.state;
         return (
             <div>
@@ -56,7 +54,7 @@ class pokemonDetailsView extends Component {
                 <MainBox> 
 
                     { 
-                        error ? <FetchErrorMassage/>: 
+                        error ? <FetchErrorMassage/> : 
                         this.props.detailsLoading ? <LoadingMessage /> :
                         !this.props.pokemonDetails.name ? <PokemonNotFound name={ this.props.match.params.pokemonName } /> : 
                         <div> 

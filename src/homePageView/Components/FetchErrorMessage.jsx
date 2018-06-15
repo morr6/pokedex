@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
+import { ErrorMessageWrapper } from '../ComponentsStyles/FetchErrorMessage.s'
 
 export class FetchErrorMassage extends Component {
     
     render() {
         return (
-            <div style={{ margin:'auto',textAlign:'center' }}>
+            <div>
+              <ErrorMessageWrapper>
                 <h1> Oup! something went wrong!</h1>
-                <span> press F5 to reaload. </span>
+                <span> check internet connection and press F5 to reload. </span>
+              </ErrorMessageWrapper>
             </div>
         )
     }
