@@ -13,7 +13,9 @@ import { MainBox,
         StatsBox,
         TypeIcon  } from './pokemonDetails.s';
 import { PokemonNotFound } from './Components/PokemonNotFound';
-import { setPokemonDetails } from '../actions/pokemonActionsList'
+import { setPokemonDetails, areDetailsLoading } from '../actions/pokemonActionsList';
+import { fetchErrorMessage, FetchErrorMassage } from '../homePageView/Components/FetchErrorMessage';
+import { LoadingMessage } from '../homePageView/Components/LoadingMessage'
 import { connect } from 'react-redux'
 
 class pokemonDetailsView extends Component {
@@ -21,42 +23,41 @@ class pokemonDetailsView extends Component {
         super(props);
 
         this.state = {
-            pokemonDetails: [],
-            pokemonLoaded: false,
             error: null,
         }
     }
 
 
     componentWillMount() {
+        
+        this.props.areDetailsLoading()
+
         fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.match.params.pokemonName}`)
         .then(res => res.json())
         .then(
           (result) => {
             this.props.setPokemonDetails(result)
-            this.setState({
-                pokemonLoaded: true
-            })
+            this.props.areDetailsLoading()
         },
         (error) => {
-          this.setState({ 
-              error: error, 
-              pokemonLoaded: true })
+          this.props.areDetailsLoaded()
+          this.setState({ error })
           }
         ) 
     }
 
+
     render() {
-        console.log(this.props.pokemonList)
-        const { pokemonLoaded, error } = this.state;
+        console.log(this.props.detailsLoading)
+        const { error } = this.state;
         return (
             <div>
                 <Menu />          
                 <MainBox> 
 
                     { 
-                        error ? <div> Error: { error.message } </div> : 
-                        !pokemonLoaded ? <div> Loading... </div> :
+                        error ? <FetchErrorMassage/>: 
+                        this.props.detailsLoading ? <LoadingMessage /> :
                         !this.props.pokemonDetails.name ? <PokemonNotFound name={ this.props.match.params.pokemonName } /> : 
                         <div> 
                             
@@ -112,7 +113,7 @@ class pokemonDetailsView extends Component {
                     }        
 
                 </MainBox>  
-
+                    
                 
             </div>
         )
@@ -121,9 +122,11 @@ class pokemonDetailsView extends Component {
 
 const mapStateToProps = state => ({
     pokemonDetails: state.pokemonDetails,
+    detailsLoading: state.detailsLoading
 })
 const mapDispatchToProps = dispatch => ({
   setPokemonDetails: pokemonDetails => dispatch(setPokemonDetails(pokemonDetails)),
+  areDetailsLoading: detailsLoading => dispatch(areDetailsLoading(detailsLoading))
 })
 export const VisiblepokemonDetails = connect(
     mapStateToProps,

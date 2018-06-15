@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import { pokemonList, apiLoaded, pokemonDetails } from "./pokemonListReducer";
+import { pokemonList, apiLoaded, pokemonDetails, detailsLoading, loadingSpecs } from "./pokemonListReducer";
 
 export const rootReducer = combineReducers({
   pokemonList, 
   apiLoaded,
-  pokemonDetails
+  pokemonDetails,
+  detailsLoading,
+  loadingSpecs
 })

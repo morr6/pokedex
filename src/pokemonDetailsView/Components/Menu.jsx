@@ -9,7 +9,7 @@ import { MenuBox,
         SearchInput,
         SearchWrapper} from '../ComponentsStyles/Menu.s';
 import SearchIcon from '../../../node_modules/react-material-icons/icons/action/search';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const searchStyle = {
     height:'20px',
@@ -25,7 +25,8 @@ export class Menu extends Component {
         super(props);
 
         this.state = {
-            searchValue: null
+            searchValue: null,
+
         }
     }
 
@@ -42,7 +43,7 @@ export class Menu extends Component {
                     <Link to={'/'} ><MenuButton> Home </MenuButton> </Link>
                     <MenuButton> Filters </MenuButton>
                     <MenuButton> Coś </MenuButton>
-                    <MenuButton> Coś innego </MenuButton>
+                    <MenuButton> Contact </MenuButton>
                 </ButtonsBox>
 
             
@@ -56,8 +57,6 @@ export class Menu extends Component {
                     </SearchWrapper>
                 </form>
               
-               
-
             </MenuBox>
         )
     }

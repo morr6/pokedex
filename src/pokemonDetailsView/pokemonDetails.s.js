@@ -60,7 +60,7 @@ export const PokemonId = glamorous.div(props => {
 export const StatsWrapper = glamorous.div(props => {
     return {
         float:'left',
-        margin:'2% 0 0 15%',
+        margin:'0 0 0 15%',
         fontFamily: '"Courier New", Courier',
     }
 })

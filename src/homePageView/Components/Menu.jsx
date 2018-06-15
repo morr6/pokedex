@@ -10,6 +10,8 @@ import { MenuBox,
         SearchWrapper} from '../ComponentsStyles/Menu.s';
 import SearchIcon from '../../../node_modules/react-material-icons/icons/action/search';
 import { Link } from 'react-router-dom';
+import * as Scroll from 'react-scroll';
+import { Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 const searchStyle = {
     height:'20px',
@@ -25,19 +27,13 @@ export class Menu extends Component {
         super(props);
 
         this.state = {
-            mouseOverMenuButton: false,
             changeMenuStyle: false,
             searchHidden: true,
             searchValue: null
         }
     }
 
-    mouseOver() {
-        this.setState({ mouseOverMenuButton:true })
-    }
-    mouseOut() {
-        this.setState({ mouseOverMenuButton:false })
-    }
+
     componentDidMount() {
         window.addEventListener( 'scroll', () => this.handleScroll() )
     }
@@ -59,17 +55,30 @@ export class Menu extends Component {
         window.location.pathname = `/${ this.state.searchValue.toLowerCase() }`
     }
       
+    scrollToContact() {
+        scroll.scrollToBottom({
+            duration: 2000,
+        });
+    }
+    scrollToTop() {
+        scroll.scrollToTop({
+            duration: 1000
+        })
+    }
 
     render() {
-        console.log(this.state.searchValue)
         return (
             <MenuBox scrolled={ this.state.changeMenuStyle } >
-                <LogoWrapper> <Logo src={logo} alt='logo' /> </LogoWrapper>
+
+                <LogoWrapper onClick={ () => this.scrollToTop() } > 
+                    <Logo src={logo} alt='logo' /> 
+                </LogoWrapper>
+
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
                     <Link to={'/'} ><MenuButton> Home </MenuButton> </Link>
                     <MenuButton> Sort </MenuButton>
                     <MenuButton> Coś </MenuButton>
-                    <MenuButton> Contact </MenuButton>
+                    <MenuButton onClick={ () => this.scrollToContact() }> Contact </MenuButton>
                 </ButtonsBox>
 
                 { this.state.changeMenuStyle === true &&

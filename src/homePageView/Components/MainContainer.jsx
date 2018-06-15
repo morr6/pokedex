@@ -7,7 +7,8 @@ import { PokemonBox } from './PokemonBox.jsx'
 import { Link } from 'react-router-dom'
 import { FetchErrorMassage } from '../Components/FetchErrorMessage';
 import { connect } from 'react-redux'
-import { setPokemonList, isApiLoaded } from "../../actions/pokemonActionsList";
+import { setPokemonList, isApiLoaded, loadMorePokemons } from "../../actions/pokemonActionsList";
+import { LoadingMessage } from './LoadingMessage'
 
 class PokemonContainer extends Component {
     constructor(props) {
@@ -15,17 +16,17 @@ class PokemonContainer extends Component {
 
         this.state = {
             error: null,
-            initialPokemonsNumber: 24,
         }
     }
 
     componentDidMount() { 
-      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.state.initialPokemonsNumber }`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.props.loadingSpecs.limit }&offset=${ this.props.loadingSpecs.offset }`)
         .then(res => res.json())
         .then(
-          (result) => {
+          (result) => {console.log(result)
             this.props.setPokemonList(result.results.map( pokemon => pokemon.name ))
             this.props.isApiLoaded()
+            this.props.loadMorePokemons()
           },
           (error) => {
             this.props.isApiLoaded()
@@ -35,11 +36,24 @@ class PokemonContainer extends Component {
     }        
 
     LoadMorePokemons() {
-        this.setState({ initialPokemonsNumber: this.state.initialPokemonsNumber + 24 })
+        this.props.loadMorePokemons()
+
+        fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.props.loadingSpecs.limit }&offset=${ this.props.loadingSpecs.offset }`)
+        .then(res => res.json())
+        .then(
+          (result) => {console.log(result)
+            this.props.setPokemonList(result.results.map( pokemon => pokemon.name ))
+            this.props.isApiLoaded()
+          },
+          (error) => {
+            this.props.isApiLoaded()
+            this.setState({ error })
+          }
+        )  
     }
     
     render() {
-      console.log(this.props.apiLoaded)
+      console.log(this.props.pokemonList)
         const { error } = this.state;
         return (
         <MainBox>
@@ -47,7 +61,7 @@ class PokemonContainer extends Component {
 
                 { 
                     error ? <FetchErrorMassage /> : 
-                    !this.props.apiLoaded ? <div> Loading... </div> :
+                    !this.props.apiLoaded ? <LoadingMessage/> :
                     this.props.pokemonList.map( (pokemon,key) =>
                           <Link key={key} style={{color:'black'}} to={`/${pokemon}`}> 
                               <PokemonBox key={key} name={ pokemon } /> 
@@ -55,7 +69,7 @@ class PokemonContainer extends Component {
                       )   
                 }
                 { this.props.apiLoaded && !error ? 
-                    <LoadMorePokemons onClick={ () => this.LoadMorePokemons() }>
+                    <LoadMorePokemons onClick={ () => this.LoadMorePokemons('mewtwo','mew') }>
                         Load more pokemons 
                     </LoadMorePokemons> : null
                 }
@@ -69,11 +83,13 @@ class PokemonContainer extends Component {
 const mapStateToProps = state => ({
   pokemonList: state.pokemonList,
   apiLoaded: state.apiLoaded,
+  loadingSpecs: state.loadingSpecs
 });
 
 const mapDispatchToProps = dispatch => ({
   setPokemonList: pokemonList => dispatch(setPokemonList(pokemonList)),
-  isApiLoaded: loaded => dispatch(isApiLoaded(loaded))
+  isApiLoaded: apiLoaded => dispatch(isApiLoaded(apiLoaded)),
+  loadMorePokemons: loadingSpecs => dispatch(loadMorePokemons(loadingSpecs))
 });
 
 export const VisiblePokemonContainer = connect(
