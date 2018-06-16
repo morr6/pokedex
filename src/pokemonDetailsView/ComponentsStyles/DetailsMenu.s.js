@@ -25,10 +25,8 @@ export const Logo = glamorous.img(props => {
 export const ButtonsBox = glamorous.div(props => {
     return {
         transition:'1s',
-        display:'flex',
-        flexWap: 'nowrap',
-        margin:'22px 0 0 20%',
-        marginLeft: '20%',
+        marginTop:'22px',
+        marginLeft: '30%',
         float:'left',
     }
 })

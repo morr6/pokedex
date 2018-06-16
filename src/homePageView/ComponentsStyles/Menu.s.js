@@ -29,8 +29,8 @@ export const Logo = glamorous.img(props => {
 export const ButtonsBox = glamorous.div(props => {
     return {
         transition:'1s',
-        margin:'22px 0 0 20%',
-        marginLeft: props.scrolled ? '20%' : '40%',
+        margin:'22px 0 0 30%',
+        marginLeft: props.scrolled ? '25%' : '40%',
         float:'left',
     }
 })

@@ -7,7 +7,7 @@ import { MenuBox,
         Logo, 
         LogoWrapper, 
         SearchInput,
-        SearchWrapper} from '../ComponentsStyles/Menu.s';
+        SearchWrapper} from '../ComponentsStyles/DetailsMenu.s';
 import SearchIcon from '../../../node_modules/react-material-icons/icons/action/search';
 import { Link } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ const searchStyle = {
 }
 
 
-export class Menu extends Component {
+export class DetailsMenu extends Component {
     constructor(props) {
         super(props);
 
@@ -41,9 +41,8 @@ export class Menu extends Component {
                 <LogoWrapper> <Logo src={logo} alt='logo' /> </LogoWrapper>
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
                     <Link to={'/'} ><MenuButton> Pokemons list </MenuButton> </Link>
-                    <MenuButton> Filters </MenuButton>
-                    <MenuButton> Coś </MenuButton>
-                    <MenuButton> Contact </MenuButton>
+                    <Link to={`/${ Math.round(Math.random() * 806) }`} > <MenuButton> Random pokemon </MenuButton> </Link>
+                    <MenuButton onClick={ () => this.props.activeContact() } > Contact </MenuButton>
                 </ButtonsBox>
 
             

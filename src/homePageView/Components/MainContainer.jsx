@@ -23,7 +23,7 @@ class PokemonContainer extends Component {
         fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.props.loadingSpecs.limit }&offset=${ this.props.loadingSpecs.offset }`)
         .then(res => res.json())
         .then(
-          (result) => {console.log(result)
+          (result) => {
             this.props.setPokemonList(result.results.map( pokemon => pokemon.name ))
 
             if (!this.props.loadingSpecs.offset) {

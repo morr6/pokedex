@@ -66,6 +66,10 @@ export class Menu extends Component {
         })
     }
 
+    randomPokemon() {
+        this.forceUpdate()
+    }
+
     render() {
         return (
             <MenuBox scrolled={ this.state.changeMenuStyle } >
@@ -76,8 +80,7 @@ export class Menu extends Component {
 
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
                     <Link to={'/'} ><MenuButton> Pokemons list </MenuButton> </Link>
-                    <MenuButton> Sort </MenuButton>
-                    <MenuButton> Coś </MenuButton>
+                    <Link to={`/${ Math.round(Math.random() * 806) }`} > <MenuButton> Random pokemon </MenuButton> </Link>
                     <MenuButton onClick={ () => this.scrollToContact() }> Contact </MenuButton>
                 </ButtonsBox>
 

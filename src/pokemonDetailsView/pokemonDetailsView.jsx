@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Menu } from '../pokemonDetailsView/Components/Menu';
+import { DetailsMenu } from '../pokemonDetailsView/Components/DetailsMenu';
 import { MainBox,  
         NameWrapper, 
         PokemonId,
@@ -12,6 +12,8 @@ import { MainBox,
         PokemonStatValue,
         StatsBox,
         TypeIcon  } from './pokemonDetails.s';
+
+import { DetailsFooter } from './Components/DetailsFooter'
 import { PokemonNotFound } from './Components/PokemonNotFound';
 import { setPokemonDetails, areDetailsLoading } from '../actions/pokemonActionsList';
 import { fetchErrorMessage, FetchErrorMassage } from '../homePageView/Components/FetchErrorMessage';
@@ -24,6 +26,7 @@ class pokemonDetailsView extends Component {
 
         this.state = {
             error: null,
+            contactIsActive: false,
         }
     }
 
@@ -36,6 +39,7 @@ class pokemonDetailsView extends Component {
         .then(res => res.json())
         .then(
           (result) => {
+              console.log(result)
             this.props.setPokemonDetails(result)
             this.props.areDetailsLoading()
         },
@@ -45,12 +49,15 @@ class pokemonDetailsView extends Component {
         ) 
     }
 
+    activeContact() {
+        this.setState({ contactIsActive: !this.state.contactIsActive })
+    }
 
     render() {
         const { error } = this.state;
         return (
             <div>
-                <Menu />          
+                <DetailsMenu  activeContact={ () => this.activeContact() }/>          
                 <MainBox> 
 
                     { 
@@ -112,7 +119,7 @@ class pokemonDetailsView extends Component {
 
                 </MainBox>  
                     
-                
+                <DetailsFooter contactIsActive={ this.state.contactIsActive } />
             </div>
         )
     }    
