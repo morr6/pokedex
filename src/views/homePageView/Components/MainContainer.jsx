@@ -7,7 +7,7 @@ import { PokemonBox } from './PokemonBox.jsx'
 import { Link } from 'react-router-dom'
 import { FetchErrorMassage } from '../Components/FetchErrorMessage';
 import { connect } from 'react-redux'
-import { setPokemonList, isApiLoaded, loadMorePokemons } from "../../actions/pokemonActionsList";
+import { setPokemonList, isApiLoaded, increaseOffset } from "../../../pokemon/actions/pokemonActionsList";
 import { LoadingMessage } from './LoadingMessage'
 
 class PokemonContainer extends Component {
@@ -27,7 +27,7 @@ class PokemonContainer extends Component {
             this.props.setPokemonList(result.results.map( pokemon => pokemon.name ))
 
             if (!this.props.loadingSpecs.offset) {
-                this.props.loadMorePokemons()
+                this.props.increaseOffset()
             }
 
             this.props.isApiLoaded()
@@ -46,34 +46,38 @@ class PokemonContainer extends Component {
     }        
 
     LoadMorePokemons() {
-        this.props.loadMorePokemons()
+        this.props.increaseOffset()
         this.fetchApi();
     }
-    
-    render() {
-      console.log(this.props.pokemonList)
-        const { error } = this.state;
-        return (
-        <MainBox>
-            <PokemonsContainer>
 
-                { 
-                    error ? <FetchErrorMassage /> : 
-                    !this.props.apiLoaded ? <LoadingMessage/> :
-                    this.props.pokemonList.map( (pokemon,key) =>
-                          <Link key={key} style={{color:'black'}} to={`/${pokemon}`}> 
-                              <PokemonBox key={key} name={ pokemon } /> 
-                          </Link>
-                      )   
-                }
-                { this.props.apiLoaded && !error ? 
-                    <LoadMorePokemons onClick={ () => this.LoadMorePokemons('mewtwo','mew') }>
-                        Load more pokemons 
-                    </LoadMorePokemons> : null
-                }
-
-            </PokemonsContainer>
-        </MainBox>
+    renderContent() {
+        return !this.props.apiLoaded ? <LoadingMessage/> :
+          this.props.pokemonList.map((pokemon, key) =>
+            <Link key={key} style={{color: 'black'}} to={`/${pokemon}`}>
+              <PokemonBox key={key} name={pokemon}/>
+            </Link>
+          ) 
+    }
+  
+      render() {
+          const { error } = this.state;
+          return (
+          <MainBox>
+              <PokemonsContainer>
+  
+                  {
+                      error ? <FetchErrorMassage /> :
+                      this.renderContent()
+                  }
+  
+                  { this.props.apiLoaded && !error &&
+                      <LoadMorePokemons onClick={ () => this.LoadMorePokemons() }>
+                          Load more pokemons
+                      </LoadMorePokemons>
+                  }
+  
+              </PokemonsContainer>
+          </MainBox>
         )
     }
 }
@@ -87,7 +91,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setPokemonList: pokemonList => dispatch(setPokemonList(pokemonList)),
   isApiLoaded: apiLoaded => dispatch(isApiLoaded(apiLoaded)),
-  loadMorePokemons: loadingSpecs => dispatch(loadMorePokemons(loadingSpecs))
+  increaseOffset: loadingSpecs => dispatch(increaseOffset(loadingSpecs))
 });
 
 export const VisiblePokemonContainer = connect(

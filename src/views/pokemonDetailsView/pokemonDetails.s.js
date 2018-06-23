@@ -44,7 +44,7 @@ export const AbilitiesWrapper = glamorous.div(props => {
     return {
         fontFamily: '"Comic Sans MS", cursive, sans-serif',
         fontSize:'25px',
-        margin:'100px 0 0 0',
+        margin:'100px 0 100px 0',
         width:'200px',
         textAlign:'center',
     }

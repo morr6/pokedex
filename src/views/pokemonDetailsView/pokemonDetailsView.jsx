@@ -12,10 +12,9 @@ import { MainBox,
         PokemonStatValue,
         StatsBox,
         TypeIcon  } from './pokemonDetails.s';
-
 import { DetailsFooter } from './Components/DetailsFooter'
 import { PokemonNotFound } from './Components/PokemonNotFound';
-import { setPokemonDetails, areDetailsLoading } from '../actions/pokemonActionsList';
+import { setPokemonDetails, areDetailsLoading } from '../../pokemon/actions/pokemonActionsList';
 import { fetchErrorMessage, FetchErrorMassage } from '../homePageView/Components/FetchErrorMessage';
 import { LoadingMessage } from '../homePageView/Components/LoadingMessage'
 import { connect } from 'react-redux'
@@ -39,7 +38,6 @@ class pokemonDetailsView extends Component {
         .then(res => res.json())
         .then(
           (result) => {
-              console.log(result)
             this.props.setPokemonDetails(result)
             this.props.areDetailsLoading()
         },
@@ -57,7 +55,7 @@ class pokemonDetailsView extends Component {
         const { error } = this.state;
         return (
             <div>
-                <DetailsMenu  activeContact={ () => this.activeContact() }/>          
+                <DetailsMenu  activeContact={ () => this.activeContact() }  />          
                 <MainBox> 
 
                     { 
@@ -85,7 +83,7 @@ class pokemonDetailsView extends Component {
                                     {  
                                         this.props.pokemonDetails.types.map( (type,key) => 
                                             <TypeIcon title={`${type.type.name}`} key={key} 
-                                                src={ require(`../img/typesIcons/${type.type.name}.png`) }
+                                                src={ require(`../../assets/img/typesIcons/${type.type.name}.png`) }
                                             /> 
                                         )
                                     }
@@ -133,7 +131,7 @@ const mapDispatchToProps = dispatch => ({
   setPokemonDetails: pokemonDetails => dispatch(setPokemonDetails(pokemonDetails)),
   areDetailsLoading: detailsLoading => dispatch(areDetailsLoading(detailsLoading))
 })
-export const VisiblepokemonDetails = connect(
+export const VisiblePokemonDetails = connect(
     mapStateToProps,
     mapDispatchToProps
   )(pokemonDetailsView)

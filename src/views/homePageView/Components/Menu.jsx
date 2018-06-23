@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
-import logo from '../../img/pokelogo.png';
+import logo from '../../../assets/img/pokelogo.png';
 import { MenuBox, 
         MenuButton, 
         ButtonsBox, 
@@ -8,7 +8,7 @@ import { MenuBox,
         LogoWrapper, 
         SearchInput,
         SearchWrapper} from '../ComponentsStyles/Menu.s';
-import SearchIcon from '../../../node_modules/react-material-icons/icons/action/search';
+import SearchIcon from '../../../../node_modules/react-material-icons/icons/action/search';
 import { Link } from 'react-router-dom';
 import * as Scroll from 'react-scroll';
 import { Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
@@ -40,13 +40,15 @@ export class Menu extends Component {
     handleScroll() { 
         let supportPageOffset = window.pageXOffset !== undefined;
           let isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
-          let scroll = {
-             x: supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft,
+          let scroll = {    
              y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
           };
       
         this.setState({ changeMenuStyle: scroll.y > 700 ? true : false })
-        setTimeout( () => this.setState({ searchHidden: scroll.y > 700 ? false : true }),300 )
+
+        if ( window.location.pathname === '/' ) {
+            setTimeout( () => this.setState({ searchHidden: scroll.y > 700 ? false : true }),300 )
+        }
           
     }
 
@@ -66,9 +68,10 @@ export class Menu extends Component {
         })
     }
 
-    randomPokemon() {
-        this.forceUpdate()
+    scrollToPokemonList() {
+        scroll.scrollTo(1000)
     }
+
 
     render() {
         return (
@@ -79,7 +82,7 @@ export class Menu extends Component {
                 </LogoWrapper>
 
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
-                    <Link to={'/'} ><MenuButton> Pokemons list </MenuButton> </Link>
+                    <Link to={'/'} ><MenuButton onClick={ () => this.scrollToPokemonList() } > Pokemons list </MenuButton> </Link>
                     <Link to={`/${ Math.round(Math.random() * 806) }`} > <MenuButton> Random pokemon </MenuButton> </Link>
                     <MenuButton onClick={ () => this.scrollToContact() }> Contact </MenuButton>
                 </ButtonsBox>

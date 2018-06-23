@@ -2,7 +2,7 @@ export const SET_POKEMON_LIST = 'SET_POKEMON_LIST';
 export const IS_API_LOADED = 'IS_API_LOADED';
 export const ARE_DETAILS_LOADING = 'ARE_DETAILS_LOADING'
 export const SET_POKEMON_DETAILS = 'SET_POKEMON_DETAILS';
-export const LOAD_MORE_POKEMONS = 'LOAD_MORE_POKEMONS';
+export const INCREASE_OFFSET = 'INCREASE_OFFSET';
 
 export const setPokemonList = pokemonList => ({
   type: SET_POKEMON_LIST,
@@ -19,12 +19,12 @@ export const isApiLoaded = apiLoaded => ({
   apiLoaded
 })
 
-export const areDetailsLoading = detailsLoading => ({
+  export const areDetailsLoading = detailsLoading => ({
   type: ARE_DETAILS_LOADING,
   detailsLoading
 })
 
-export const loadMorePokemons = loadingSpecs => ({
-  type: LOAD_MORE_POKEMONS,
+export const increaseOffset = loadingSpecs => ({
+  type: INCREASE_OFFSET,
   loadingSpecs
 })

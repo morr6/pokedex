@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
-import logo from '../../img/pokelogo.png';
+import logo from '../../../assets/img/pokelogo.png';
 import { MenuBox, 
         MenuButton, 
         ButtonsBox, 
@@ -8,7 +8,7 @@ import { MenuBox,
         LogoWrapper, 
         SearchInput,
         SearchWrapper} from '../ComponentsStyles/DetailsMenu.s';
-import SearchIcon from '../../../node_modules/react-material-icons/icons/action/search';
+import SearchIcon from '../../../../node_modules/react-material-icons/icons/action/search';
 import { Link } from 'react-router-dom';
 
 const searchStyle = {
@@ -40,9 +40,17 @@ export class DetailsMenu extends Component {
             <MenuBox>
                 <LogoWrapper> <Logo src={logo} alt='logo' /> </LogoWrapper>
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
+
                     <Link to={'/'} ><MenuButton> Pokemons list </MenuButton> </Link>
-                    <Link to={`/${ Math.round(Math.random() * 806) }`} > <MenuButton> Random pokemon </MenuButton> </Link>
+
+                    <Link to={`/${ Math.round(Math.random() * 806) }`} > 
+                        <MenuButton > 
+                            Random pokemon 
+                        </MenuButton>
+                    </Link>
+
                     <MenuButton onClick={ () => this.props.activeContact() } > Contact </MenuButton>
+
                 </ButtonsBox>
 
             

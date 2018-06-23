@@ -2,7 +2,7 @@ import { SET_POKEMON_LIST,
          SET_POKEMON_DETAILS, 
          ARE_DETAILS_LOADING,
          IS_API_LOADED, 
-         LOAD_MORE_POKEMONS} from "../actions/pokemonActionsList";
+         INCREASE_OFFSET} from "../actions/pokemonActionsList";
 
 
 export const pokemonList = ( state = [] , action ) => {
@@ -43,7 +43,7 @@ export const detailsLoading = ( state = false, action ) => {
 
 export const loadingSpecs = ( state = { limit: 24, offset: 0 } , action ) => {
   switch ( action.type ) {
-    case LOAD_MORE_POKEMONS:
+    case INCREASE_OFFSET:
       return { ...state, offset: state.offset + 24 }
     default:
       return state

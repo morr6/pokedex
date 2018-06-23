@@ -33,6 +33,9 @@ export const LoadMorePokemons = glamorous.button(props => {
         ':hover': {
             color:'white',
             background:'red'
+        },
+        ':active': {
+            transform:'scale(1.3)'
         }
     }
 })

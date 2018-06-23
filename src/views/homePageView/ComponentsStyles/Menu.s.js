@@ -30,12 +30,13 @@ export const ButtonsBox = glamorous.div(props => {
     return {
         transition:'1s',
         margin:'22px 0 0 30%',
-        marginLeft: props.scrolled ? '25%' : '40%',
+        marginLeft: props.scrolled ? '25%' : '35%',
         float:'left',
     }
 })
 export const MenuButton = glamorous.div(props => {
     return {
+        outline: 'none',
         cursor: 'pointer',
         fontFamily: '"Lucida Console", Monaco, monospace',
         fontSize:'15px',
