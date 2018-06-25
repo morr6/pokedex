@@ -15,7 +15,7 @@ import { MainBox,
 import { DetailsFooter } from './Components/DetailsFooter'
 import { PokemonNotFound } from './Components/PokemonNotFound';
 import { setPokemonDetails, areDetailsLoading } from '../../pokemon/actions/pokemonActionsList';
-import { fetchErrorMessage, FetchErrorMassage } from '../homePageView/Components/FetchErrorMessage';
+import { FetchErrorMessage } from '../homePageView/Components/FetchErrorMessage';
 import { LoadingMessage } from '../homePageView/Components/LoadingMessage'
 import { connect } from 'react-redux'
 
@@ -59,7 +59,7 @@ class pokemonDetailsView extends Component {
                 <MainBox> 
 
                     { 
-                        error ? <FetchErrorMassage/> : 
+                        error ? <FetchErrorMessage/> : 
                         this.props.detailsLoading ? <LoadingMessage /> :
                         !this.props.pokemonDetails.name ? <PokemonNotFound name={ this.props.match.params.pokemonName } /> : 
                         <div> 

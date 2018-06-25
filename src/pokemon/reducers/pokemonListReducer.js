@@ -1,7 +1,7 @@
 import { SET_POKEMON_LIST, 
          SET_POKEMON_DETAILS, 
          ARE_DETAILS_LOADING,
-         IS_API_LOADED, 
+         IS_API_LOADING, 
          INCREASE_OFFSET} from "../actions/pokemonActionsList";
 
 
@@ -23,10 +23,10 @@ export const pokemonDetails = ( state = [], action ) => {
   }
 }
 
-export const apiLoaded = ( state = false, action ) => {
+export const apiLoading = ( state = false, action ) => {
   switch ( action.type ) {
-    case IS_API_LOADED:
-      return true
+    case IS_API_LOADING:
+      return !state
     default:
       return state
   }

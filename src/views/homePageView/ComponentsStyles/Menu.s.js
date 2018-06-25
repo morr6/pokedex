@@ -7,7 +7,8 @@ export const MenuBox = glamorous.div(props => {
         position:'fixed',
         height: '70px',
         width: '100%',
-        background: props.scrolled ? 'linear-gradient(#9a0000,#850000)' : 'none',
+        background: props.scrolled ? 'linear-gradient(#9a0000,#850000)' : 'none', 
+        
     }
 })
 
@@ -29,9 +30,9 @@ export const Logo = glamorous.img(props => {
 export const ButtonsBox = glamorous.div(props => {
     return {
         transition:'1s',
-        margin:'22px 0 0 30%',
+        margin:'22px 0 0 0',
         marginLeft: props.scrolled ? '25%' : '35%',
-        float:'left',
+        float:'right',
     }
 })
 export const MenuButton = glamorous.div(props => {

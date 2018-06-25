@@ -7,7 +7,6 @@ import { FooterBox,
         NumberWrapper, 
         MailWrapper,
         Mail } from '../ComponentsStyles/DetailsFooter.s';
-import { Link } from 'react-router-dom'
 import PhoneIcon from '../../../../node_modules/react-material-icons/icons/communication/phone.js'
 import MailIcon from '../../../../node_modules/react-material-icons/icons/communication/email.js'
 

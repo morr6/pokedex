@@ -37,16 +37,16 @@ export class Menu extends Component {
     componentDidMount() {
         window.addEventListener( 'scroll', () => this.handleScroll() )
     }
+    
     handleScroll() { 
         let supportPageOffset = window.pageXOffset !== undefined;
           let isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
           let scroll = {    
              y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
           };
-      
-        this.setState({ changeMenuStyle: scroll.y > 700 ? true : false })
 
         if ( window.location.pathname === '/' ) {
+            this.setState({ changeMenuStyle: scroll.y > 700 ? true : false })
             setTimeout( () => this.setState({ searchHidden: scroll.y > 700 ? false : true }),300 )
         }
           

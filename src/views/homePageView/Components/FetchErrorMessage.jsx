@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { ErrorMessageWrapper } from '../ComponentsStyles/FetchErrorMessage.s'
 
-export class FetchErrorMassage extends Component {
+export class FetchErrorMessage extends Component {
     
     render() {
         return (
