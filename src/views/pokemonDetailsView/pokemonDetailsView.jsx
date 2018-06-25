@@ -17,8 +17,9 @@ import { PokemonNotFound } from './Components/PokemonNotFound';
 import { setPokemonDetails, areDetailsLoading } from '../../pokemon/actions/pokemonActionsList';
 import { FetchErrorMessage } from '../homePageView/Components/FetchErrorMessage';
 import { LoadingMessage } from '../homePageView/Components/LoadingMessage'
-import { connect } from 'react-redux'
-
+import { connect } from 'react-redux';
+import { PokemonApi } from '../../pokemon/api/pokemonApi'
+ 
 class pokemonDetailsView extends Component {
     constructor(props) {
         super(props);
@@ -34,8 +35,7 @@ class pokemonDetailsView extends Component {
         
         this.props.areDetailsLoading()
 
-        fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.match.params.pokemonName}`)
-        .then(res => res.json())
+        PokemonApi.fetchPokemon( this.props.match.params.pokemonName )
         .then(
           (result) => {
             this.props.setPokemonDetails(result)

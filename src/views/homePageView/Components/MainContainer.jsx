@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom'
 import { FetchErrorMessage } from '../Components/FetchErrorMessage';
 import { connect } from 'react-redux'
 import { setPokemonList, isApiLoading, increaseOffset } from "../../../pokemon/actions/pokemonActionsList";
-import { LoadingMessage } from './LoadingMessage'
+import { LoadingMessage } from './LoadingMessage';
+import { pokemonList } from '../../../pokemon/api/pokemonApi'
 
 class PokemonContainer extends Component {
     constructor(props) {
@@ -23,8 +24,7 @@ class PokemonContainer extends Component {
         
         this.props.isApiLoading()
 
-        fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.props.fetchSpecs.limit }&offset=${ this.props.fetchSpecs.offset }`)
-        .then(res => res.json())
+        pokemonList.fetchList( this.props.fetchSpecs.limit, this.props.fetchSpecs.offset )
         .then(
           (result) => {
             this.props.setPokemonList(result.results.map( pokemon => pokemon.name ))

@@ -34,7 +34,7 @@ export class Menu extends Component {
     }
 
 
-    componentDidMount() {
+    componentWillMount() {
         window.addEventListener( 'scroll', () => this.handleScroll() )
     }
     
