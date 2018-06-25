@@ -97,7 +97,7 @@ export class Menu extends Component {
                     </SearchWrapper>
                   </form>
                 }
-
+                
             </MenuBox>
         )
     }

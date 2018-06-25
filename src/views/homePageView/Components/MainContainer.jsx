@@ -23,19 +23,20 @@ class PokemonContainer extends Component {
         
         this.props.isApiLoading()
 
-        fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.props.loadingSpecs.limit }&offset=${ this.props.loadingSpecs.offset }`)
+        fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${ this.props.fetchSpecs.limit }&offset=${ this.props.fetchSpecs.offset }`)
         .then(res => res.json())
         .then(
           (result) => {
             this.props.setPokemonList(result.results.map( pokemon => pokemon.name ))
 
-            if (!this.props.loadingSpecs.offset) {
+            if (!this.props.fetchSpecs.offset) {
                 this.props.increaseOffset()
             }
 
             this.props.isApiLoading()
           },
           (error) => {
+            console.log(error)
             this.props.isApiLoading()
             this.setState({ error })
           }
@@ -54,12 +55,23 @@ class PokemonContainer extends Component {
     }
 
     renderContent() {
-        return this.props.apiLoading ? <LoadingMessage/> :
-          this.props.pokemonList.map((pokemon, key) =>
+        return this.props.apiLoading ?
+        <div>
+            {
+                this.props.pokemonList.map((pokemon, key) =>
+                    <Link key={key} style={{color: 'black'}} to={`/${pokemon}`}>
+                    <PokemonBox key={key} name={pokemon}/>
+                    </Link>
+                ) 
+            }  
+            <LoadingMessage/> 
+        </div> :
+        this.props.pokemonList.map((pokemon, key) =>
             <Link key={key} style={{color: 'black'}} to={`/${pokemon}`}>
-              <PokemonBox key={key} name={pokemon}/>
+                <PokemonBox key={key} name={pokemon}/>
             </Link>
-          ) 
+        ) 
+         
     }
   
       render() {
@@ -89,13 +101,13 @@ class PokemonContainer extends Component {
 const mapStateToProps = state => ({
   pokemonList: state.pokemonList,
   apiLoading: state.apiLoading,
-  loadingSpecs: state.loadingSpecs
+  fetchSpecs: state.fetchSpecs
 });
 
 const mapDispatchToProps = dispatch => ({
   setPokemonList: pokemonList => dispatch(setPokemonList(pokemonList)),
   isApiLoading: apiLoading => dispatch(isApiLoading(apiLoading)),
-  increaseOffset: loadingSpecs => dispatch(increaseOffset(loadingSpecs))
+  increaseOffset: fetchSpecs => dispatch(increaseOffset(fetchSpecs))
 });
 
 export const VisiblePokemonContainer = connect(

@@ -36,7 +36,7 @@ export const GitName = glamorous.span(props => {
         float:'left',
 
         ':hover': {
-            color:'#9a0000'
+            transform: 'scale(1.05)',
         }
     }
 })
@@ -58,7 +58,7 @@ export const NumberWrapper = glamorous.span(props => {
         float:'left',
 
         ':hover': {
-            color:'#9a0000',
+            transform: 'scale(1.05)',
         }
     }
 })
@@ -80,7 +80,7 @@ export const Mail = glamorous.span(props => {
         float:'left',
 
         ':hover': {
-            color:'#9a0000'
+            transform: 'scale(1.05)',
         }
     }
 })

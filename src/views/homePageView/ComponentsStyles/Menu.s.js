@@ -30,9 +30,9 @@ export const Logo = glamorous.img(props => {
 export const ButtonsBox = glamorous.div(props => {
     return {
         transition:'1s',
-        margin:'22px 0 0 0',
+        marginTop:'22px',
         marginLeft: props.scrolled ? '25%' : '35%',
-        float:'right',
+        float:'left',
     }
 })
 export const MenuButton = glamorous.div(props => {

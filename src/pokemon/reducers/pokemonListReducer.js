@@ -41,7 +41,7 @@ export const detailsLoading = ( state = false, action ) => {
   }
 }
 
-export const loadingSpecs = ( state = { limit: 24, offset: 0 } , action ) => {
+export const fetchSpecs = ( state = { limit: 24, offset: 0 } , action ) => {
   switch ( action.type ) {
     case INCREASE_OFFSET:
       return { ...state, offset: state.offset + 24 }
