@@ -43,7 +43,7 @@ class PokemonContainer extends Component {
         )  
     }
 
-    componentWillMount() { 
+    componentDidMount() { 
         if (!this.props.pokemonList.length) { 
             this.fetchApi()
         }

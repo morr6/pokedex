@@ -35,6 +35,10 @@ export class DetailsMenu extends Component {
         window.location.pathname = `/${ this.state.searchValue.toLowerCase() }`
     }
    
+    findRandomPokemon() {
+        window.location.pathname = `/${ Math.round(Math.random() * 806) }`
+    }
+
     render() {
         return (
             <MenuBox>
@@ -43,11 +47,9 @@ export class DetailsMenu extends Component {
 
                     <Link to={'/'} ><MenuButton> Pokemons list </MenuButton> </Link>
 
-                    <Link to={`/${ Math.round(Math.random() * 806) }`} > 
-                        <MenuButton > 
-                            Random pokemon 
-                        </MenuButton>
-                    </Link>
+                    <MenuButton onClick={ () => this.findRandomPokemon() }> 
+                        Random pokemon 
+                    </MenuButton>
 
                     <MenuButton onClick={ () => this.props.activeContact() } > Contact </MenuButton>
 

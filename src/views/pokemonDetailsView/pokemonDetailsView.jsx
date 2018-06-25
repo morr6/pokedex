@@ -30,7 +30,7 @@ class pokemonDetailsView extends Component {
     }
 
 
-    componentWillMount() {
+    componentDidMount() {
         
         this.props.areDetailsLoading()
 
