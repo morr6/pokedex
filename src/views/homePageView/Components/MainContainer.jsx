@@ -55,22 +55,21 @@ class PokemonContainer extends Component {
     }
 
     renderContent() {
-        return this.props.apiLoading ?
-        <div>
-            {
-                this.props.pokemonList.map((pokemon, key) =>
-                    <Link key={key} style={{color: 'black'}} to={`/${pokemon}`}>
+        const  pokemonMap = () => {
+            return this.props.pokemonList.map((pokemon, key) =>
+                <Link key={key} style={{color: 'black'}} to={`/${pokemon}`}>
                     <PokemonBox key={key} name={pokemon}/>
-                    </Link>
-                ) 
-            }  
-            <LoadingMessage/> 
-        </div> :
-        this.props.pokemonList.map((pokemon, key) =>
-            <Link key={key} style={{color: 'black'}} to={`/${pokemon}`}>
-                <PokemonBox key={key} name={pokemon}/>
-            </Link>
-        ) 
+                </Link>
+            ) 
+        }  
+
+        return this.props.apiLoading ?
+            <div>
+                { pokemonMap() }  
+                <LoadingMessage/> 
+            </div> :
+        
+            pokemonMap()
          
     }
   

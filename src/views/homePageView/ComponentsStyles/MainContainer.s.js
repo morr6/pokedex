@@ -6,7 +6,8 @@ export const MainBox = glamorous.div(props => {
         background:'white',
         marginTop:'25%',
         overflow:'hidden',
-        paddingBottom: '20%'
+        paddingBottom: '20%',
+        overflow:'scroll'
     }
 })
 

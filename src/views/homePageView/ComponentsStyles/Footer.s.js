@@ -4,7 +4,11 @@ export const FooterBox = glamorous.div(props => {
     return {
         height:'50px',
         width:'100%',
-        background:'linear-gradient(#454545,#444444)'
+        background:'linear-gradient(#454545,#444444)',
+
+        '@media (max-width: 850px)' : {
+            display: 'none'
+        }
     }
 })
 

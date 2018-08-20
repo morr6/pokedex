@@ -8,11 +8,6 @@ export const MenuBox = glamorous.div(props => {
         height: '70px',
         width: '100%',
         background: props.scrolled ? 'linear-gradient(rgba(46,125,50,.8),rgba(56,142,60,.8))' : 'none',
-        
-        '@media (max-width: 600px)' : {
-            display: 'none'
-        }
-
     }
 })
 
