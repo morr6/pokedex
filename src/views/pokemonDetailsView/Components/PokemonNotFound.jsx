@@ -12,26 +12,31 @@ const pokemonNameStyle = {
     fontSize:'45px',
     color:'red', 
     fontFamily: '"Lucida Console", Monaco, monospace',
-    margin:'0 20px 0 20px' 
+    margin:'0 20px 0 20px',
 }
+const MessageWrapperStyle = {
+    padding: '50px 0 0 0'
+}
+
 const imageStyle = {
-    margin:'15% 0 0 0',
+    margin:'5% 0 0 10%',
     height: '50%',
     width: '50%',
 }
+
 
 export class PokemonNotFound extends Component {
     
     render() {
         return (
             <div style={ mainBoxStyle } >
-                <h1> 
+                <div style={ MessageWrapperStyle }>
                     pokemon 
                     <span style={ pokemonNameStyle }> 
                         { this.props.name.toUpperCase() } 
                     </span> 
                     not found!
-                </h1>
+                </div>
                 <img style={ imageStyle } src={ require('../../../assets/img/pikachu.png') } alt='Pikachu'/>
 
             </div>

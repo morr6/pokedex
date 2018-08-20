@@ -4,21 +4,7 @@ export const MenuBox = glamorous.div(props => {
     return {
         height: '7.5vh',
         width: '100%',
-        background:'linear-gradient(#9a0000,#850000)' 
-    }
-})
-
-export const LogoWrapper = glamorous.div(props => {
-    return {
-        margin:'7.5px 0 0 10%',
-        float:'left'
-    }
-})
-
-export const Logo = glamorous.img(props => {
-    return {
-        height:'50px',
-        width:'250px',
+        background:'linear-gradient(#2e7d32,#388e3c)' 
     }
 })
 
@@ -26,7 +12,7 @@ export const ButtonsBox = glamorous.div(props => {
     return {
         transition:'1s',
         marginTop:'22px',
-        marginLeft: '30%',
+        marginLeft: '50%',
         float:'left',
     }
 })
@@ -57,7 +43,7 @@ export const SearchInput = glamorous.input(props => {
 export const SearchWrapper = glamorous.div(props => {
     return {
         border:'1px solid grey',
-        margin:'20px 0 0 5%',
+        margin:'20px 0 0 3%',
         float:'left',
         background:'rgba(255,250,250,1)',
         height:'25px', width:'250px',

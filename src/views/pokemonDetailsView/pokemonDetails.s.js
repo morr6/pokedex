@@ -2,7 +2,6 @@ import glamorous from 'glamorous';
 
 export const MainBox = glamorous.div(props => {
     return {
-        overflow:'scroll',
         height:'92.5vh', width:'100%',
         background:'white',
     }
@@ -10,8 +9,10 @@ export const MainBox = glamorous.div(props => {
 
 export const NameWrapper = glamorous.div(props => {
     return {
-        fontSize: '30px',
+        padding: '2% 0 1% 0',
+        fontSize: '50px',
         fontFamily: '"Courier New", Courier',
+        fontWeight: 'bold', 
         textAlign: 'center',
     }
 })
@@ -43,7 +44,18 @@ export const CenterBox = glamorous.div(props => {
 export const AbilitiesWrapper = glamorous.div(props => {
     return {
         fontFamily: '"Comic Sans MS", cursive, sans-serif',
-        fontSize:'25px',
+        fontSize:'30px',
+        margin:'0px 0 100px 0',
+        width:'200px',
+        textAlign:'center',
+    }
+})
+
+export const AbilitiesTitle = glamorous.div(props => {
+    return {
+        fontFamily: '"Comic Sans MS", cursive, sans-serif',
+        fontSize:'50px',
+        fontWeight: 'bold',
         margin:'100px 0 100px 0',
         width:'200px',
         textAlign:'center',

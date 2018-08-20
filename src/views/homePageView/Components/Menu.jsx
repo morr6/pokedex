@@ -4,8 +4,6 @@ import logo from '../../../assets/img/pokelogo.png';
 import { MenuBox, 
         MenuButton, 
         ButtonsBox, 
-        Logo, 
-        LogoWrapper, 
         SearchInput,
         SearchWrapper} from '../ComponentsStyles/Menu.s';
 import SearchIcon from '../../../../node_modules/react-material-icons/icons/action/search';
@@ -46,8 +44,8 @@ export class Menu extends Component {
           };
 
         if ( window.location.pathname === '/' ) {
-            this.setState({ changeMenuStyle: scroll.y > 700 ? true : false })
-            setTimeout( () => this.setState({ searchHidden: scroll.y > 700 ? false : true }),300 )
+            this.setState({ changeMenuStyle: scroll.y > 350 ? true : false })
+            setTimeout( () => this.setState({ searchHidden: scroll.y > 350 ? false : true }),500 )
         }
           
     }
@@ -76,11 +74,6 @@ export class Menu extends Component {
     render() {
         return (
             <MenuBox scrolled={ this.state.changeMenuStyle } >
-
-                <LogoWrapper onClick={ () => this.scrollToTop() } > 
-                    <Logo src={logo} alt='logo' /> 
-                </LogoWrapper>
-
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
                     <Link to={'/'} ><MenuButton onClick={ () => this.scrollToPokemonList() } > Pokemons list </MenuButton> </Link>
                     <Link to={`/${ Math.round(Math.random() * 806) }`} > <MenuButton> Random pokemon </MenuButton> </Link>

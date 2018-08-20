@@ -6,6 +6,7 @@ import { MainBox,
         PokemonImageWrapper,
         TypesWrapper,
         AbilitiesWrapper,
+        AbilitiesTitle,
         CenterBox,
         StatsWrapper,
         PokemonStatName,
@@ -65,10 +66,12 @@ class pokemonDetailsView extends Component {
                         <div> 
                             
                             <NameWrapper>
-                            <h1> 
-                                { this.props.pokemonDetails.name.charAt(0).toUpperCase() + 
-                                    this.props.pokemonDetails.name.slice(1).toLowerCase() } 
-                            </h1>
+                            
+                                { 
+                                    this.props.pokemonDetails.name.charAt(0).toUpperCase() + 
+                                    this.props.pokemonDetails.name.slice(1).toLowerCase() 
+                                } 
+                            
                             <PokemonId> #{ this.props.pokemonDetails.id } </PokemonId>
                             </NameWrapper>
                             
@@ -89,8 +92,11 @@ class pokemonDetailsView extends Component {
                                     }
                                 </TypesWrapper>  
 
-                                <AbilitiesWrapper>   
-                                    <h1> Abilities </h1>
+                                <AbilitiesTitle>
+                                    Abilities
+                                </AbilitiesTitle>
+
+                                <AbilitiesWrapper>
                                     {
                                         this.props.pokemonDetails.abilities.map( (ability,key) =>
                                             <div key={key}>

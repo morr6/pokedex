@@ -4,7 +4,7 @@ export const MainBox = glamorous.div(props => {
     return { 
         width:'100%', height:'100%',
         background:'white',
-        marginTop:'50%',
+        marginTop:'25%',
         overflow:'hidden',
         paddingBottom: '20%'
     }
@@ -21,18 +21,18 @@ export const LoadMorePokemons = glamorous.button(props => {
     return {
         margin:'5% 0 0 37.5%',
         background: 'white',
-        border: '1px solid red',
+        border: '1px solid green',
         borderRadius:'50px',
         outline:'none',
         cursor: 'pointer',
         height:'50px', width:'200px',        
         fontFamily: '"Comic Sans MS", cursive, sans-serif',
-        color:'red',
+        color:'green',
         transition:'.6s',
 
         ':hover': {
             color:'white',
-            background:'red'
+            background:'green'
         },
         ':active': {
             transform:'scale(1.3)'

@@ -4,8 +4,8 @@ export class LoadingMessage extends Component {
 
     render() {
         return (
-            <div>
-                <h1 style={{ marginLeft:'42%' }}> Loading... </h1>
+            <div style={{ marginLeft:'42%', fontWeight: 'bold', fontSize: '40px' }}>
+                Loading... 
             </div>
         )
     }

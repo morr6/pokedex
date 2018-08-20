@@ -7,23 +7,12 @@ export const MenuBox = glamorous.div(props => {
         position:'fixed',
         height: '70px',
         width: '100%',
-        background: props.scrolled ? 'linear-gradient(#9a0000,#850000)' : 'none', 
+        background: props.scrolled ? 'linear-gradient(rgba(46,125,50,.8),rgba(56,142,60,.8))' : 'none',
         
-    }
-})
+        '@media (max-width: 600px)' : {
+            display: 'none'
+        }
 
-export const LogoWrapper = glamorous.div(props => {
-    return {
-        margin:'7.5px 0 0 10%',
-        float:'left',
-        cursor: 'pointer'
-    }
-})
-
-export const Logo = glamorous.img(props => {
-    return {
-        height:'50px',
-        width:'250px',
     }
 })
 
@@ -31,7 +20,7 @@ export const ButtonsBox = glamorous.div(props => {
     return {
         transition:'1s',
         marginTop:'22px',
-        marginLeft: props.scrolled ? '25%' : '35%',
+        marginLeft: props.scrolled ? '50%' : '65%',
         float:'left',
     }
 })

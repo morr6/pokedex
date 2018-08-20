@@ -3,9 +3,7 @@ import {Component} from 'react';
 import logo from '../../../assets/img/pokelogo.png';
 import { MenuBox, 
         MenuButton, 
-        ButtonsBox, 
-        Logo, 
-        LogoWrapper, 
+        ButtonsBox,  
         SearchInput,
         SearchWrapper} from '../ComponentsStyles/DetailsMenu.s';
 import SearchIcon from '../../../../node_modules/react-material-icons/icons/action/search';
@@ -42,7 +40,6 @@ export class DetailsMenu extends Component {
     render() {
         return (
             <MenuBox>
-                <LogoWrapper> <Logo src={logo} alt='logo' /> </LogoWrapper>
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
 
                     <Link to={'/'} ><MenuButton> Pokemons list </MenuButton> </Link>
@@ -55,8 +52,6 @@ export class DetailsMenu extends Component {
 
                 </ButtonsBox>
 
-            
-            
                 <form onSubmit={ (event) => this.searchSubmit(event) } > 
                     <SearchWrapper hidden={ this.state.searchHidden  }>
                         <SearchIcon style={ searchStyle } />
