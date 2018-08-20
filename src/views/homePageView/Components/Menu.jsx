@@ -67,7 +67,7 @@ export class Menu extends Component {
     }
 
     scrollToPokemonList() {
-        scroll.scrollTo(1000)
+        scroll.scrollTo(500)
     }
 
 
