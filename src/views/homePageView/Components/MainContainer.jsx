@@ -95,7 +95,7 @@ class PokemonContainer extends Component {
           </MainBox>
         )
     }
-}
+}   
 
 const mapStateToProps = state => ({
   pokemonList: state.pokemonList,
