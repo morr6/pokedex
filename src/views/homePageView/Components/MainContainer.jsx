@@ -57,7 +57,7 @@ class PokemonContainer extends Component {
     renderContent() {
         const  pokemonMap = () => {
             return this.props.pokemonList.map((pokemon, key) =>
-                <Link key={key} style={{color: 'black'}} to={`/${pokemon}`}>
+                <Link key={key} style={{color: 'black'}} to={`/pokedex/${pokemon}`}>
                     <PokemonBox key={key} name={pokemon}/>
                 </Link>
             ) 
