@@ -30,11 +30,11 @@ export class DetailsMenu extends Component {
 
     searchSubmit(event) {
         event.preventDefault(event);
-        window.location.pathname = `/${ this.state.searchValue.toLowerCase() }`
+        window.location.pathname = `/pokedex/${ this.state.searchValue.toLowerCase() }`
     }
    
     findRandomPokemon() {
-        window.location.pathname = `/${ Math.round(Math.random() * 806) }`
+        window.location.pathname = `/pokedex/${ Math.round(Math.random() * 806) }`
     }
 
     render() {
@@ -42,7 +42,7 @@ export class DetailsMenu extends Component {
             <MenuBox>
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
 
-                    <Link to={'/'} ><MenuButton> Pokemons list </MenuButton> </Link>
+                    <Link to={'/pokedex'} ><MenuButton> Pokemons list </MenuButton> </Link>
 
                     <MenuButton onClick={ () => this.findRandomPokemon() }> 
                         Random pokemon 

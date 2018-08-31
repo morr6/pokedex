@@ -75,8 +75,8 @@ export class Menu extends Component {
         return (
             <MenuBox scrolled={ this.state.changeMenuStyle } >
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
-                    <Link to={'/'} ><MenuButton onClick={ () => this.scrollToPokemonList() } > Pokemons list </MenuButton> </Link>
-                    <Link to={`/${ Math.round(Math.random() * 806) }`} > <MenuButton> Random pokemon </MenuButton> </Link>
+                    <Link to={'/pokedex'} ><MenuButton onClick={ () => this.scrollToPokemonList() } > Pokemons list </MenuButton> </Link>
+                    <Link to={`/pokedex/${ Math.round(Math.random() * 806) }`} > <MenuButton> Random pokemon </MenuButton> </Link>
                     <MenuButton onClick={ () => this.scrollToContact() }> Contact </MenuButton>
                 </ButtonsBox>
 
