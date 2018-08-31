@@ -11,9 +11,9 @@ class App extends Component {
         <MuiThemeProvider>
           <BrowserRouter>
             <div>
-              <Route exact path="/" component={ homePageView } />
+              <Route exact path="/pokedex/" component={ homePageView } />
 
-              <Route exact path="/:pokemonName" component={ VisiblePokemonDetails } />
+              <Route exact path="/pokedex/:pokemonName" component={ VisiblePokemonDetails } />
             </div>
           </BrowserRouter>
         </MuiThemeProvider>
