@@ -13,7 +13,7 @@ class App extends Component {
             <div>
               <Route exact path="/pokedex/" component={ homePageView } />
 
-              <Route exact path="/pokedex/:pokemonName" component={ VisiblePokemonDetails } />
+              <Route exact path="/:pokemonName" component={ VisiblePokemonDetails } />
             </div>
           </BrowserRouter>
         </MuiThemeProvider>
