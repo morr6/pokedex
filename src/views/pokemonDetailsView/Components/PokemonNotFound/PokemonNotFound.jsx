@@ -37,7 +37,7 @@ export class PokemonNotFound extends Component {
                     </span> 
                     not found!
                 </div>
-                <img style={ imageStyle } src={ require('../../../assets/img/pikachu.png') } alt='Pikachu'/>
+                <img style={ imageStyle } src={ require('../../../../assets/img/pikachu.png') } alt='Pikachu'/>
 
             </div>
         )

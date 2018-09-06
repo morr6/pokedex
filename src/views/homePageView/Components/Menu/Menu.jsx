@@ -1,12 +1,12 @@
 import React from 'react';
 import {Component} from 'react';
-import logo from '../../../assets/img/pokelogo.png';
+import logo from '../../../../assets/img/pokelogo.png';
 import { MenuBox, 
         MenuButton, 
         ButtonsBox, 
         SearchInput,
-        SearchWrapper} from '../ComponentsStyles/Menu.s';
-import SearchIcon from '../../../../node_modules/react-material-icons/icons/action/search';
+        SearchWrapper} from './Menu.s';
+import SearchIcon from '../../../../../node_modules/react-material-icons/icons/action/search';
 import { Link } from 'react-router-dom';
 import * as Scroll from 'react-scroll';
 import { Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
@@ -43,7 +43,7 @@ export class Menu extends Component {
              y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
           };
 
-        if ( window.location.pathname === '/' ) {
+        if ( window.location.pathname === '/pokedex' ) {
             this.setState({ changeMenuStyle: scroll.y > 350 ? true : false })
             setTimeout( () => this.setState({ searchHidden: scroll.y > 350 ? false : true }),500 )
         }

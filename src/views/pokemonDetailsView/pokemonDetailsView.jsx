@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { DetailsMenu } from '../pokemonDetailsView/Components/DetailsMenu';
+import { DetailsMenu } from './Components/DetailsMenu/DetailsMenu';
 import { MainBox,  
         NameWrapper, 
         PokemonId,
@@ -13,11 +13,11 @@ import { MainBox,
         PokemonStatValue,
         StatsBox,
         TypeIcon  } from './pokemonDetails.s';
-import { DetailsFooter } from './Components/DetailsFooter'
-import { PokemonNotFound } from './Components/PokemonNotFound';
+import { DetailsFooter } from './Components/DetailsFooter/DetailsFooter'
+import { PokemonNotFound } from './Components/PokemonNotFound/PokemonNotFound';
 import { setPokemonDetails, areDetailsLoading } from '../../pokemon/actions/pokemonActionsList';
-import { FetchErrorMessage } from '../homePageView/Components/FetchErrorMessage';
-import { LoadingMessage } from '../homePageView/Components/LoadingMessage'
+import { FetchErrorMessage } from '../homePageView/Components/FetchErrorMessage/FetchErrorMessage';
+import { LoadingMessage } from '../homePageView/Components/LoadingMessage/LoadingMessage'
 import { connect } from 'react-redux';
 import { PokemonApi } from '../../pokemon/api/pokemonApi'
  

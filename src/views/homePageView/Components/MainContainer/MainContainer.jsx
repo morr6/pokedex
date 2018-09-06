@@ -2,14 +2,14 @@ import React from 'react';
 import {Component} from 'react';
 import { MainBox,
     PokemonsContainer,
-    LoadMorePokemons, } from '../ComponentsStyles/MainContainer.s'
-import { PokemonBox } from './PokemonBox.jsx'
+    LoadMorePokemons, } from './MainContainer.s'
+import { PokemonBox } from '../PokemonBox/PokemonBox'
 import { Link } from 'react-router-dom'
-import { FetchErrorMessage } from '../Components/FetchErrorMessage';
+import { FetchErrorMessage } from '../FetchErrorMessage/FetchErrorMessage';
 import { connect } from 'react-redux'
-import { setPokemonList, isApiLoading, increaseOffset } from "../../../pokemon/actions/pokemonActionsList";
-import { LoadingMessage } from './LoadingMessage';
-import { pokemonList } from '../../../pokemon/api/pokemonApi'
+import { setPokemonList, isApiLoading, increaseOffset } from "../../../../pokemon/actions/pokemonActionsList";
+import { LoadingMessage } from '../LoadingMessage/LoadingMessage';
+import { pokemonList } from '../../../../pokemon/api/pokemonApi'
 
 class PokemonContainer extends Component {
     constructor(props) {
@@ -79,16 +79,12 @@ class PokemonContainer extends Component {
           <MainBox>
               <PokemonsContainer>
   
-                  {
-                      error ? <FetchErrorMessage /> :
-                      this.renderContent()  
-                  }
+                  { error ? <FetchErrorMessage /> : this.renderContent() }
                   
                   { !this.props.apiLoading && !error &&
                       <LoadMorePokemons onClick={ () => this.LoadMorePokemons() }>
                           Load more pokemons
                       </LoadMorePokemons>
-                      
                   }
   
               </PokemonsContainer>

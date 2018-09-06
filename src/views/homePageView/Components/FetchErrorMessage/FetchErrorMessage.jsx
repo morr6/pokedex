@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ErrorMessageWrapper } from '../ComponentsStyles/FetchErrorMessage.s'
+import { ErrorMessageWrapper } from './FetchErrorMessage.s'
 
 export class FetchErrorMessage extends Component {
     

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Component} from 'react';
-import logo from '../../../assets/img/pokelogo.png';
+import logo from '../../../../assets/img/pokelogo.png';
 import { MenuBox, 
         MenuButton, 
         ButtonsBox,  
         SearchInput,
-        SearchWrapper} from '../ComponentsStyles/DetailsMenu.s';
-import SearchIcon from '../../../../node_modules/react-material-icons/icons/action/search';
+        SearchWrapper} from './DetailsMenu.s';
+import SearchIcon from '../../../../../node_modules/react-material-icons/icons/action/search';
 import { Link } from 'react-router-dom';
 
 const searchStyle = {

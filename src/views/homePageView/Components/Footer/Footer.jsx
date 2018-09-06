@@ -6,9 +6,9 @@ import { FooterBox,
         PhoneWrapper, 
         NumberWrapper, 
         MailWrapper,
-        Mail } from '../ComponentsStyles/DetailsFooter.s';
-import PhoneIcon from '../../../../node_modules/react-material-icons/icons/communication/phone.js'
-import MailIcon from '../../../../node_modules/react-material-icons/icons/communication/email.js'
+        Mail} from './Footer.s';
+import PhoneIcon from '../../../../../node_modules/react-material-icons/icons/communication/phone.js'
+import MailIcon from '../../../../../node_modules/react-material-icons/icons/communication/email.js'
 
 const ContactIconStyle = {
     height:'27px',
@@ -18,22 +18,22 @@ const ContactIconStyle = {
     paddingRight:'10px',
 }
 
-export class DetailsFooter extends Component {
+export class Footer extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            contactIsActive: false
+
         }
     }
 
     render() {
         return (
-            <FooterBox contactIsActive={ this.props.contactIsActive } >
+            <FooterBox>
 
                 <GitWrapper>
                     <GitLogo 
-                        src={ require('../../../assets/img/gitLogo.png') } 
+                        src={ require('../../../../assets/img/gitLogo.png') } 
                         alt='Git Logo' 
                     />
                     <a href='https://github.com/morr6' target='_blank' style={{textDecoration:'none'}}>
