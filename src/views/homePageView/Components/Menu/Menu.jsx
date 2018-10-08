@@ -41,8 +41,9 @@ export class Menu extends Component {
           let scroll = {    
              y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
           };
-          
+
         if ( window.location.pathname === '/pokedex' ) {
+            console.log(window.location.pathname)
             this.setState({ changeMenuStyle: scroll.y > 350 ? true : false })
             setTimeout( () => this.setState({ searchHidden: scroll.y > 350 ? false : true }),500 )
         }
