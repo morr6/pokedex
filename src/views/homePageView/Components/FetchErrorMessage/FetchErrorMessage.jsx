@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import { ErrorMessageWrapper } from './FetchErrorMessage.s'
+import { ErrorMessageWrapper,Message } from './FetchErrorMessage.s'
 
 export class FetchErrorMessage extends Component {
     
     render() {
-        return (
+        return (    
             <div>
               <ErrorMessageWrapper>
-                <h1> Oup! something went wrong!</h1>
-                <span> check internet connection and press F5 to reload. </span>
+                <Message> Oup! something went wrong! </Message>
+                <Message> check internet connection and press F5 to reload. </Message>
               </ErrorMessageWrapper>
             </div>
         )

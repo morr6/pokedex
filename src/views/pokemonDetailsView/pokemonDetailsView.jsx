@@ -33,7 +33,6 @@ class pokemonDetailsView extends Component {
 
 
     componentDidMount() {
-        
         this.props.areDetailsLoading()
 
         PokemonApi.fetchPokemon( this.props.match.params.pokemonName )

@@ -2,8 +2,14 @@ import glamorous from 'glamorous';
 
 export const ErrorMessageWrapper = glamorous.div(props => {
     return {
-        width:'30%',
-        margin: '5% 0 0 30%',
-        textAlign: 'center'
+        textAlign: 'center',    
+        paddingTop: '2%',
+        width: '100%'
+    }
+})
+
+export const Message = glamorous.div(props => {
+    return {
+        fontSize: '20px'
     }
 })

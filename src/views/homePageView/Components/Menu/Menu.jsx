@@ -1,6 +1,5 @@
 import React from 'react';
 import {Component} from 'react';
-import logo from '../../../../assets/img/pokelogo.png';
 import { MenuBox, 
         MenuButton, 
         ButtonsBox, 
