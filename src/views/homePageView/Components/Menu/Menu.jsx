@@ -42,7 +42,7 @@ export class Menu extends Component {
              y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
           };
 
-        if ( window.location.pathname === '/pokedex' || '/pokedex/' ) {
+        if ( window.location.pathname === '/pokedex/' ) {
             this.setState({ changeMenuStyle: scroll.y > 350 ? true : false })
             setTimeout( () => this.setState({ searchHidden: scroll.y > 350 ? false : true }),500 )
         }
@@ -74,7 +74,7 @@ export class Menu extends Component {
         return (
             <MenuBox scrolled={ this.state.changeMenuStyle } >
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
-                    <Link to={'/pokedex'} ><MenuButton onClick={ () => this.scrollToPokemonList() } > Pokemons list </MenuButton> </Link>
+                    <Link to={'/pokedex/'} ><MenuButton onClick={ () => this.scrollToPokemonList() } > Pokemons list </MenuButton> </Link>
                     <Link to={`/pokedex/${ Math.round(Math.random() * 806) }`} > <MenuButton> Random pokemon </MenuButton> </Link>
                     <MenuButton onClick={ () => this.scrollToContact() }> Contact </MenuButton>
                 </ButtonsBox>
