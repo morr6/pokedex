@@ -42,7 +42,7 @@ export class DetailsMenu extends Component {
             <MenuBox>
                 <ButtonsBox scrolled={ this.state.changeMenuStyle } >
 
-                    <Link to={'/pokedex'} ><MenuButton> Pokemons list </MenuButton> </Link>
+                    <Link to={'/pokedex/'} ><MenuButton> Pokemons list </MenuButton> </Link>
 
                     <MenuButton onClick={ () => this.findRandomPokemon() }> 
                         Random pokemon 
