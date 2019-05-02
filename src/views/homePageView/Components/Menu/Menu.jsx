@@ -52,7 +52,7 @@ export class Menu extends Component {
 
     searchSubmit(event) {
         event.preventDefault(event);
-        window.location.pathname = `/${ this.state.searchValue.toLowerCase() }`
+        window.location.pathname = `/pokedex/${ this.state.searchValue.toLowerCase() }`
     }
       
     scrollToContact() {
